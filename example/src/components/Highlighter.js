@@ -1,19 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import SyntaxHighlighter from 'react-syntax-highlighter'
-import { tomorrowNightEighties } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import tomorrow from 'react-syntax-highlighter/dist/styles/prism/tomorrow'
+
+const trim = str => str.trim()
 
 const Highlighter = ({
-  language = 'javascript',
+  language = 'jsx',
   children
 }) =>
   <SyntaxHighlighter
     className='Code'
     language={language}
-    style={tomorrowNightEighties}
+    style={tomorrow}
   >
-    { typeof children === 'string' ? children.trim() : children.map(str => str.trim()) }
+    { typeof children === 'string' ? trim(children) : children.map(trim) }
   </SyntaxHighlighter>
 
 Highlighter.propTypes = {

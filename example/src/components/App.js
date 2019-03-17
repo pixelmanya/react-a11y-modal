@@ -286,6 +286,7 @@ import { Modal } from 'react-a11y-modal'
                 <Section
                   title={label}
                   text={text}
+                  emoji='👈 👀'
                   key={name}
                 >
                   <button

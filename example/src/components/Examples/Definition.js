@@ -46,17 +46,81 @@ const BasicModal = () =>
     Component: BasicModal
   },
   {
-    name: 'confirmationModal',
-    label: 'Confirmation Modal',
-    text: `
-      This example is using a basic fade transition utilizing <Transition /> by react-transition-group.
-    `,
-    value: false,
-    Component: ConfirmationModal
-  },
-  {
     name: 'animatedConfirmationModal',
     label: 'Confirmation Modal',
+    text: `
+      This example uses a fade transition utilizing <Transition /> by react-transition-group.
+    `,
+    code: `
+import React from 'react'
+import { Modal } from 'react-a11y-modal'
+
+export const ConfirmationModal = () => {
+  return (
+    <Modal.Container
+      className={{
+        ConfirmationModal: true
+      }}
+    >
+      { ({ actions }) =>
+        <>
+          <div className='ConfirmationModal__title'>
+            Are you sure you want to delete this element?
+          </div>
+          <button
+            aria-label='Close'
+            onClick={actions.close}
+            className='ConfirmationModalClose'
+          >
+            <Close className='ConfirmationModalClose__icon' />
+          </button>
+          <div className='ConfirmationModalFooter'>
+            <button
+              onClick={actions.close}
+              className='ConfirmationModalFooter__button'
+            >
+              No
+            </button>
+            <button
+              onClick={actions.close}
+              className='ConfirmationModalFooter__button ConfirmationModalFooter__button--primary'
+            >
+              Yes
+            </button>
+          </div>
+        </>
+      }
+    </Modal.Container>
+  )
+}
+
+export const AnimatedConfirmationModal = ({
+  onAfterClose,
+  mountTo
+}) => {
+  const [visible, setVisible] = useState(true)
+  const hide = () => setVisible(false)
+
+  return ReactDOM.createPortal(
+    <Fade
+      appear
+      in={visible}
+      timeout={{
+        enter: 0,
+        exit: 200
+      }}
+      onExited={onAfterClose}
+    >
+      <ConfirmationModal
+        isOpen={visible}
+        onClose={hide}
+      />
+    </Fade>,
+    mountTo
+  )
+}
+
+    `,
     value: false,
     Component: AnimatedConfirmationModal
   },
