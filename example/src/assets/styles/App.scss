@@ -1,0 +1,438 @@
+@import './config';
+
+/* Basics */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #34495e;
+
+  &.modal-is-opened {
+    overflow: hidden;
+  }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-size: 100%; // 16px
+
+  @include respond-to-max(50rem) {
+    font-size: 87.5%; // 14px
+  }
+}
+
+body,
+html,
+#root {
+  height: 100%;
+  min-height: 100%;
+}
+
+/* App */
+
+.App {
+  height: 100vh;
+  padding: 0;
+  font-size: 1.5rem;
+  transition: filter .3s ease;
+  display: grid;
+  grid-template-areas:
+    "navigation content"
+    "navigation footer";
+  height: 100vh;
+  grid-template-columns: 15.625rem 1fr; // 250px / 16px = 15.625rem
+  grid-template-rows: 1fr auto;
+  transition: transform .3s ease;
+
+  @include respond-to-max(50rem) {
+    display: block;
+  }
+}
+
+.Navigation {
+  position: fixed;
+  width: 15.625rem;
+  grid-area: navigation;
+  height: 100%;
+  background: #ecf0f1;
+  font-size: 1rem;
+  padding: 1rem 0;
+  transition: left .3s ease;
+
+  @include respond-to-max(50rem) {
+    left: -15.625rem;
+
+    .navigation-is-visible & {
+      left: 0;
+    }
+  }
+
+  &Switch {
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    left: 1.25rem;
+    bottom: 1.25rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+    padding: .75rem;
+    cursor: pointer;
+    background: #3498db;
+
+    @include respond-to-min(51rem) {
+      display: none;
+    }
+
+    .navigation-is-visible & {
+      display: block;
+    }
+
+    &__line {
+      position: relative;
+      display: inline-block;
+      margin: 0 auto;
+      width: 95%;
+      height: 2px;
+      background: rgba(white, .7);
+      transition: all .3s ease;
+
+      &:first-child {
+        top: 2px;
+      }
+
+      &:last-child {
+        bottom: 2px;
+      }
+
+      .navigation-is-visible & {
+        position: absolute;
+        top: 50%;
+        width: 50%;
+
+        &:first-child {
+          transform: rotate(45deg);
+        }
+
+        &:first-child + * {
+          transform: rotate(-45deg);
+        }
+
+        &:last-child {
+          display: none;
+        }
+      }
+    }
+
+    &:hover {
+      background: #3498db;
+    }
+  }
+
+  &Links {
+    list-style: none;
+
+    &--level-2 {
+      padding: 0 1rem;
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: #34495e;
+
+    &:active {
+      color: #2c3e50;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.Content {
+  position: relative;
+  grid-area: content;
+  padding: 2rem;
+  transition: transform .3s ease;
+
+  @include respond-to-max(50rem) {
+    padding: 2rem 0;
+  }
+
+  &__wrapper {
+    max-width: 50rem; // 800px / 16px = 50rem
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .navigation-is-visible & {
+    transform: translateX(15.625rem);
+  }
+
+  $red: #9b59b6;
+
+  a {
+    color: $red;
+    text-decoration: none;
+    padding: 0.1875rem 0;
+    border-bottom: 1px solid rgba($red, .5);
+    border-radius: 2px 2px 0 0;
+
+    &:hover {
+      background: rgba($red, .1);
+      border-bottom-color: $red;
+    }
+  }
+}
+
+.SocialButtons {
+  position: absolute;
+  right: 2rem;
+  top: 1rem;
+
+  &__item {
+    display: inline-block;
+    margin-right: .75rem;
+
+    &:last-child {
+      margin: 0;
+    }
+
+    &--twitter {
+      position: relative;
+      top: -2px;
+    }
+  }
+}
+
+.Footer {
+  grid-area: footer;
+  font-size: .75rem;
+  margin: 0 2rem;
+  padding: 2rem 0;
+  color: #7f8c8d;
+}
+
+.credits {
+  float: right;
+
+  a {
+    color: #3498db;
+  }
+}
+
+.modal-is-opened .App {
+  filter: blur(10px);
+}
+
+.Title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 1rem 0 3rem;
+}
+
+.Example {
+  &Button {
+    font-size: 1rem;
+    padding: .5rem;
+    margin: 1rem 1rem 1rem 0;
+    border: none;
+    background: #3498db;
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+
+    &:hover {
+      background: #2980b9;
+    }
+  }
+}
+
+*:focus,
+button:active {
+  outline: 1px dotted black;
+  outline-offset: -3px;
+}
+
+.Introduction {
+  display: block;
+  border-left: 10px solid #3498db;
+  background: rgba(#3498db, .3);
+  border-radius: 4px;
+  padding: 1.75rem 1.5rem;
+  margin: 0 -2rem 3rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+
+  @include respond-to-max(50rem) {
+    padding: 1.25rem 1rem;
+    border-left-width: 5px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.Code {
+  display: block;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  margin: 1rem -2rem;
+  padding: 1rem 2rem !important;
+  border-radius: 4px;
+  white-space: pre-wrap;
+
+  @include respond-to-max(50rem) {
+    padding: 1rem !important;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.Section {
+  margin: 3rem 0 0 0;
+
+  &__title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  &__emoji {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: .5rem;
+  }
+
+  &__text {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .code {
+    margin-top: 1.5rem;
+  }
+}
+
+/* Styling Modal in general */
+
+.Modal-has-header.Modal-has-body.Modal-has-footer {
+  grid-template-rows: 5rem auto 5rem;
+}
+
+.Modal-has-header.Modal-has-body {
+  grid-template-rows: 5rem auto;
+}
+
+.ModalHeader {
+  padding: 1rem;
+}
+
+.ModalHeader__title {
+  font-size: 1.5rem;
+  line-height: 2;
+}
+
+.ModalBody {
+  padding: 1rem;
+  overflow-y: auto;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.Modal {
+  color: #34495e;
+}
+
+.ModalBackdrop {
+  outline: none;
+}
+
+.ModalFooter {
+  box-shadow: 0 5px 30px rgba(0, 0, 0, .4);
+  padding: 1rem;
+  text-align: right;
+}
+
+.ModalFooter__button {
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  padding: .75rem;
+  border: none;
+  cursor: pointer;
+}
+
+
+.CloseButton {
+  position: absolute;
+  right: 1rem;
+  top: 2rem;
+  width: .75rem;
+  height: .75rem;
+  padding: .5rem;
+  margin-top: -.375rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  white-space: nowrap;
+  outline-offset: 0;
+  outline-color: #3498db;
+
+  &__icon {
+    position: absolute;
+    left: .125rem;
+    top: .125rem;
+    opacity: .5;
+    transition: opacity .2s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.ModalFooter__button:last-child {
+  margin-right: 0;
+}
+
+.ModalFooter__button--disabled {
+  cursor: not-allowed;
+  opacity: .3;
+}
+
+.ModalFooter__button--cancel {
+  color: #95a5a6;
+}
+
+.ModalFooter__button--cancel:hover {
+  color: #7f8c8d;
+  text-decoration: underline;
+}
+
+.ModalFooter__button--cta {
+  font-weight: bold;
+  background: #3498db;
+  color: white;
+  border-radius: 3px;
+}
+
+.ModalFooter__button--cta:hover {
+  background: #2980b9;
+}

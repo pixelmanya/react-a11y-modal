@@ -1,0 +1,15 @@
+// ColorPalette from https://flatuicolors.com/palette/defo
+
+// Mixins
+
+@mixin respond-to-min($width) {
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}
+
+@mixin respond-to-max($width) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
