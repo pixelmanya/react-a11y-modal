@@ -119,7 +119,9 @@ const Navigation = ({
         } else if (idx !== -1) {
           const [link] = getLinkElement(Section)
 
-          link.classList.remove(activeClassName)
+          if (link) {
+            link.classList.remove(activeClassName)
+          }
 
           visible.splice(idx, 1)
         }
@@ -128,15 +130,17 @@ const Navigation = ({
       visible.map((Section, idx) => {
         const [link] = getLinkElement(Section)
 
-        if (idx === 0) {
-          if (window.history.pushState) {
-            window.history.pushState(null, null, link.href)
-          } else {
-            window.location.hash = link.href
+        if (link) {
+          if (idx === 0) {
+            if (window.history.pushState) {
+              window.history.pushState(null, null, link.href)
+            } else {
+              window.location.hash = link.href
+            }
           }
-        }
 
-        link.classList[idx > 0 ? 'remove' : 'add'](activeClassName)
+          link.classList[idx > 0 ? 'remove' : 'add'](activeClassName)
+        }
       })
     }
 
