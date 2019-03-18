@@ -10,14 +10,9 @@ export const Backdrop = css`
   opacity: .2;
 `
 
-/*
-  top: 50px;
-  bottom: 50px;
-  left: 50px;
-  right: 50px;
-*/
-
-export const Container = css`
+export const Container = ({
+  hasHeaderBodyAndFooter
+}) => css`
   overflow: hidden;
   position: fixed;
   top: 50%;
@@ -36,20 +31,28 @@ export const Container = css`
     0px 9px 46px 8px rgba(0,0,0,0.12);
   background: white;
 
-  @media screen and (max-width: 600px) {
-    top: 25px;
-    bottom: 25px;
-    left: 25px;
-    right: 25px;
-  }
+  ${hasHeaderBodyAndFooter ? `
+    top: 50px;
+    bottom: 50px;
+    left: 50px;
+    right: 50px;
+    transform: none;
 
-  @media screen and (max-width: 375px) {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 0;
-  }
+    @media screen and (max-width: 600px) {
+      top: 25px;
+      bottom: 25px;
+      left: 25px;
+      right: 25px;
+    }
+
+    @media screen and (max-width: 375px) {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-radius: 0;
+    }
+  ` : ''}
 `
 
 export const Header = css`

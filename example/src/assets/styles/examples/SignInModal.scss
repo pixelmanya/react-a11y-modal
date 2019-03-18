@@ -59,7 +59,7 @@
     font-size: 1rem;
     display: block;
     width: 100%;
-    border: 2px inset rebeccapurple;
+    border: 2px inset grey;
     border-radius: 4px;
 
     &:focus {
@@ -72,9 +72,9 @@
   &__button {
     display: block;
     width: 100%;
-    color: rebeccapurple;
+    color:white;
     border: 2px solid rebeccapurple;
-    background: white;
+    background: rebeccapurple;
     font-size: 1rem;
     border-radius: 3px;
     padding: .75rem 1rem;

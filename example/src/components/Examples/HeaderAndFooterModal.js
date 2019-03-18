@@ -6,14 +6,13 @@ const ModalWithHeaderAndFooter = ({
   mountTo
 }) =>
   <Modal.Container
-    mountTo={ mountTo }
-    shouldCloseOnBackdropClick={ true }
-    onAfterClose={ onAfterClose }
+    mountTo={mountTo}
+    onAfterClose={onAfterClose}
   >
     { ({ actions }) => (
       <>
         <Modal.Header>
-          <h3 className="ModalHeader__title">
+          <h3 className='ModalHeader__title'>
             Modal With Header And Footer
           </h3>
         </Modal.Header>
@@ -26,14 +25,14 @@ const ModalWithHeaderAndFooter = ({
         </Modal.Body>
         <Modal.Footer>
           <button
-            onClick={ actions.close }
-            className="ModalFooter__button ModalFooter__button--cancel"
+            onClick={actions.close}
+            className='ModalFooter__button ModalFooter__button--cancel'
           >
             Cancel and close
           </button>
           <button
-            onClick={ actions.close }
-            className="ModalFooter__button ModalFooter__button--cta"
+            onClick={actions.close}
+            className='ModalFooter__button ModalFooter__button--cta'
           >
             Save
           </button>

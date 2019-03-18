@@ -2,6 +2,10 @@
 
 // Mixins
 
+@function get-rem($value: 0) {
+  @return ($value / ($value * 0 + 1)) / 16 * 1rem;
+}
+
 @mixin respond-to-min($width) {
   @media screen and (min-width: $width) {
     @content;

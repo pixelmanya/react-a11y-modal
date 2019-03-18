@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react'
 
 import { Definition as Examples } from './Examples'
+import Navigation from './Navigation'
 import Section from './Section'
 import Highlighter from './Highlighter'
 
 import '../assets/styles/App.scss'
 
 function App () {
+  // Examples state (handling visibility of modals)
   const [state, setState] = useState(Examples)
   const toggleState = name => visible => {
     let newState = [...state]
@@ -40,6 +42,8 @@ function App () {
     }
   }
 
+  // effect for toggling body.navigation-is-visible
+  // when clicking on switch
   useEffect(() => {
     const onDocClick = event => {
       toggleNavigationIsVisibleClass(event.target)
@@ -53,80 +57,7 @@ function App () {
   return (
     <>
       <div className='App'>
-        <a
-          onClick={() => document.body.classList.toggle('navigation-is-visible')}
-          className='NavigationSwitch'
-        >
-          <span className='NavigationSwitch__line' />
-          <span className='NavigationSwitch__line' />
-          <span className='NavigationSwitch__line' />
-        </a>
-        <nav
-          ref={navRef}
-          className='Navigation'
-        >
-          <ul className='NavigationLinks'>
-            <li className='NavigationLinks__item'>
-              <a href='#introduction' className='Navigation__link'>
-                Getting started
-              </a>
-              <ul className='NavigationLinks NavigationLinks--level-2'>
-                <li className='NavigationLinks__item'>
-                  <a href='#installation' className='Navigation__link'>
-                    Installation
-                  </a>
-                </li>
-                <li className='NavigationLinks__item'>
-                  <a href='#usage' className='Navigation__link'>
-                    Usage
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li className='NavigationLinks__item'>
-              <a className='Navigation__link'>
-                Accessibility
-              </a>
-            </li>
-            <li className='NavigationLinks__item'>
-              <a className='Navigation__link'>
-                Styles
-              </a>
-            </li>
-            <li className='NavigationLinks__item'>
-              <a className='Navigation__link'>
-                Examples
-              </a>
-              <ul className='NavigationLinks NavigationLinks--level-2'>
-                <li className='NavigationLinks__item'>
-                  <a href='#example-basic' className='Navigation__link'>
-                    Basic
-                  </a>
-                </li>
-                <li className='NavigationLinks__item'>
-                  <a href='#example-header-body-footer' className='Navigation__link'>
-                    Header, Body &amp; Footer
-                  </a>
-                </li>
-                <li className='NavigationLinks__item'>
-                  <a href='#example-login' className='Navigation__link'>
-                    Login
-                  </a>
-                </li>
-                <li className='NavigationLinks__item'>
-                  <a href='#example-terms-and-conditions' className='Navigation__link'>
-                    Terms &amp; Conditions
-                  </a>
-                </li>
-                <li className='NavigationLinks__item'>
-                  <a href='#example-confirmation-dialog' className='Navigation__link'>
-                    Confirmation Dialog
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
+        <Navigation navRef={navRef} />
         <main className='Content'>
           <div className='SocialButtons'>
             <iframe
@@ -148,18 +79,22 @@ function App () {
               scrolling='0'
             />
           </div>
-          <div id='introduction' className='Content__wrapper'>
+          <div className='Content__wrapper'>
             <h1 className='Title'>react-a11y-modal</h1>
-            <blockquote className='Introduction'>
-              <strong>Foreword</strong><br />
+            <Section
+              id='foreword'
+            >
+              <blockquote className='Introduction'>
+                <strong>Foreword</strong><br />
               I've built this accessible modal dialog for React mainly because I wanted to learn the recently
               officially introduced <a href='https://reactjs.org/docs/hooks-intro.html' target='blank'>React Hooks</a> (16.8.0). I also wanted to give developers a modal which they could use right away
               without worrying much about styling.
-            </blockquote>
+              </blockquote>
+            </Section>
             <Section
               id='installation'
               title='Installation'
-              emoji='🔨'
+              emoji='⚒'
               text='To install the latest stable version use npm or yarn.'
             >
               <Highlighter language='bash'>
@@ -272,6 +207,18 @@ import { Modal } from 'react-a11y-modal'
                 `}
               </Highlighter>
             </Section>
+            <Section
+              id='accessibility'
+              title='Accessibility'
+              emoji='♿️'
+              text='Pellentesque dignissim ultrices ipsum, nec viverra nunc molestie nec. Sed consequat semper libero, at scelerisque nibh. Quisque eu aliquet elit. Nam mattis sem orci, a mattis odio bibendum a. Proin et mollis massa. In et leo pulvinar, ultrices tellus quis, porttitor libero. Vestibulum ac finibus purus, eleifend semper turpis. Suspendisse vitae consequat ligula, ut scelerisque felis. Ut quis scelerisque augue, a laoreet nisl. Nullam id auctor elit, ut vestibulum dolor. Quisque varius finibus odio, non euismod dolor varius ut. Vivamus placerat ac odio vel imperdiet. Vivamus lacinia nisi sit amet lorem posuere suscipit. Nam velit arcu, lacinia id laoreet et, congue at urna. Nullam rhoncus, diam a vestibulum consectetur, nisi neque malesuada velit, in scelerisque ligula est et turpis.'
+            />
+            <Section
+              id='styling'
+              title='Styling'
+              emoji='💅'
+              text='Pellentesque dignissim ultrices ipsum, nec viverra nunc molestie nec. Sed consequat semper libero, at scelerisque nibh. Quisque eu aliquet elit. Nam mattis sem orci, a mattis odio bibendum a. Proin et mollis massa. In et leo pulvinar, ultrices tellus quis, porttitor libero. Vestibulum ac finibus purus, eleifend semper turpis. Suspendisse vitae consequat ligula, ut scelerisque felis. Ut quis scelerisque augue, a laoreet nisl. Nullam id auctor elit, ut vestibulum dolor. Quisque varius finibus odio, non euismod dolor varius ut. Vivamus placerat ac odio vel imperdiet. Vivamus lacinia nisi sit amet lorem posuere suscipit. Nam velit arcu, lacinia id laoreet et, congue at urna. Nullam rhoncus, diam a vestibulum consectetur, nisi neque malesuada velit, in scelerisque ligula est et turpis.'
+            />
             { state && state.map(({
               name,
               label,
@@ -284,6 +231,7 @@ import { Modal } from 'react-a11y-modal'
 
               return (
                 <Section
+                  id={name}
                   title={label}
                   text={text}
                   emoji='👈 👀'
@@ -293,7 +241,7 @@ import { Modal } from 'react-a11y-modal'
                     onClick={() => setState(true)}
                     className='ExampleButton'
                   >
-                    Show {label}
+                    Show me
                   </button>
                   { code && (
                     <Highlighter>

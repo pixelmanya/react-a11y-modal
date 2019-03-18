@@ -8,9 +8,12 @@ const Section = ({
   text,
   children
 }) =>
-  <section className='Section'>
+  <section
+    id={id}
+    className='Section'
+  >
     { title && (
-      <h2 id={id} className='Section__title'>
+      <h2 className='Section__title'>
         { title }
         { emoji && (
           <span className='Section__emoji' role='img'>

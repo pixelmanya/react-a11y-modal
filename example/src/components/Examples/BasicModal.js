@@ -3,10 +3,12 @@ import { Modal } from 'react-a11y-modal'
 import { ReactComponent as Close } from '../../assets/icons/close.svg'
 
 const BasicModal = ({
+  className,
   mountTo,
   onAfterClose
 }) => (
   <Modal.Container
+    className={className}
     mountTo={mountTo}
     onAfterClose={onAfterClose}
   >

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Transition } from 'react-transition-group';
+import React from 'react'
+import { Transition } from 'react-transition-group'
 
 const defaultProps = {
   in: false,
@@ -7,7 +7,7 @@ const defaultProps = {
 }
 
 const defaultStyle = {
-  position: 'absolute',
+  position: 'absolute'
 }
 
 export const MyTransition = ({
@@ -17,7 +17,7 @@ export const MyTransition = ({
 }) => {
   return (
     <Transition
-      { ...props }
+      {...props}
     >
       { state =>
         <div
@@ -42,13 +42,13 @@ export const Fade = props => {
       opacity: 0
     },
     entering: { opacity: 0 },
-    entered: { opacity: 1 },
+    entered: { opacity: 1 }
   }
 
   return (
     <MyTransition
-      { ...props }
-      styles={ styles }
+      {...props}
+      styles={styles}
     />
   )
 }

@@ -13,6 +13,10 @@ body {
   &.modal-is-opened {
     overflow: hidden;
   }
+
+  &.navigation-is-visible {
+    overflow-x: hidden;
+  }
 }
 
 *,
@@ -26,7 +30,9 @@ body {
 :root {
   font-size: 100%; // 16px
 
-  @include respond-to-max(50rem) {
+  @include respond-to-max(
+    get-rem(800px)
+  ) {
     font-size: 87.5%; // 14px
   }
 }
@@ -50,11 +56,13 @@ html,
     "navigation content"
     "navigation footer";
   height: 100vh;
-  grid-template-columns: 15.625rem 1fr; // 250px / 16px = 15.625rem
+  grid-template-columns: get-rem(250px) 1fr;
   grid-template-rows: 1fr auto;
-  transition: transform .3s ease;
+  transition: transform .3s linear;
 
-  @include respond-to-max(50rem) {
+  @include respond-to-max(
+    get-rem(1110px)
+  ) {
     display: block;
   }
 }
@@ -69,7 +77,9 @@ html,
   padding: 1rem 0;
   transition: left .3s ease;
 
-  @include respond-to-max(50rem) {
+  @include respond-to-max(
+    get-rem(1110px)
+  ) {
     left: -15.625rem;
 
     .navigation-is-visible & {
@@ -83,16 +93,19 @@ html,
     flex-direction: column;
     justify-content: space-between;
     position: fixed;
-    left: 1.25rem;
-    bottom: 1.25rem;
-    width: 3rem;
-    height: 3rem;
+    left: get-rem(24px);
+    bottom: get-rem(24px);
+    width: get-rem(48px);
+    height: get-rem(48px);
     border-radius: 100%;
-    padding: .75rem;
+    padding: get-rem(11.4px);
     cursor: pointer;
+    border: 2px solid white;
     background: #3498db;
 
-    @include respond-to-min(51rem) {
+    @include respond-to-min(
+      get-rem(1110px)
+    ) {
       display: none;
     }
 
@@ -141,12 +154,15 @@ html,
     }
   }
 
+  $levelOne: & + 'Links--level-1';
+
   &Links {
     list-style: none;
+    padding: 0 .5em;
+  }
 
-    &--level-2 {
-      padding: 0 1rem;
-    }
+  #{$levelOne} {
+    padding: 0;
   }
 
   &__link {
@@ -155,15 +171,20 @@ html,
     cursor: pointer;
     text-decoration: none;
     color: #34495e;
+    outline: none;
+    transition: all .3s ease;
 
-    &:active {
-      color: #2c3e50;
-      text-decoration: underline;
+    #{$levelOne} > * > & {
       font-weight: bold;
     }
 
     &:hover {
-      text-decoration: underline;
+      color: #9b59b6;
+    }
+
+    &--active {
+      font-weight: bold;
+      color: #9b59b6;
     }
   }
 }
@@ -171,7 +192,7 @@ html,
 .Content {
   position: relative;
   grid-area: content;
-  padding: 2rem;
+  padding: 0 0 2rem;
   transition: transform .3s ease;
 
   @include respond-to-max(50rem) {
@@ -247,7 +268,8 @@ html,
 .Title {
   font-size: 2.5rem;
   font-weight: bold;
-  margin: 1rem 0 3rem;
+  padding-top: 3rem;
+  margin: 0 0 3rem;
 }
 
 .Example {
@@ -279,39 +301,42 @@ button:active {
   background: rgba(#3498db, .3);
   border-radius: 4px;
   padding: 1.75rem 1.5rem;
-  margin: 0 -2rem 3rem;
+  margin: 0 -2rem;
   font-size: 1.25rem;
   line-height: 1.5;
 
-  @include respond-to-max(50rem) {
+  @include respond-to-max(
+    get-rem(800px)
+  ) {
     padding: 1.25rem 1rem;
     border-left-width: 5px;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 0 -1rem;
   }
 }
 
 .Code {
   display: block;
-  font-size: 1.15rem;
+  font-size: 1rem;
   line-height: 1.5;
-  margin: 1rem -2rem;
-  padding: 1rem 2rem !important;
+  margin: 1rem -2rem !important;
+  padding: 1.25rem 2rem !important;
   border-radius: 4px;
   white-space: pre-wrap;
 
-  @include respond-to-max(50rem) {
+  @include respond-to-max(
+    get-rem(800px)
+  ) {
     padding: 1rem !important;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 1rem -1rem !important;
   }
 }
 
 .Section {
-  margin: 3rem 0 0 0;
+  margin: 0;
 
   &__title {
     font-size: 1.5rem;
+    padding-top: 3rem;
     margin-bottom: 1rem;
   }
 
@@ -378,7 +403,6 @@ button:active {
   border: none;
   cursor: pointer;
 }
-
 
 .CloseButton {
   position: absolute;

@@ -24,7 +24,7 @@ export const defaultProps = {
   namespace: 'Modal',
   backdropTagName: 'div',
   containerTagName: 'dialog',
-  className: {},
+  className: '',
   mountTo: null,
 
   shallHide: false,
@@ -108,6 +108,7 @@ function Container({
     children,
     Modal
   })
+  const hasHeaderBodyAndFooter = mapOfChildrenUsed.Header && mapOfChildrenUsed.Body && mapOfChildrenUsed.Footer
 
   // effect for applying potential styles
   // to backdrop and container
@@ -192,6 +193,30 @@ function Container({
   })
 
   const getCreateElementFn = prop => actions.hasStyles(prop) ? React.createElement : jsx
+  const getClassName = prop => {
+    const defaultClassNames = (additionalProps = {}) => classNames({
+      [state.namespace]: true,
+      ...mapKeys(mapOfChildrenUsed, (value, key) => `${state.namespace}-has-${key.toLowerCase()}`),
+      ...additionalProps
+    })
+
+    if (typeof prop === 'string') {
+      const keys = prop.split(' ')
+      const props = {
+        [prop]: true
+      }
+
+      if (keys.length > 1) {
+        keys.map(key => {
+          props[key] = true
+        })
+      }
+
+      return defaultClassNames(props)
+    }
+
+    return defaultClassNames(prop)
+  }
 
   // this array holds our
   // backdrop & container elements
@@ -223,12 +248,10 @@ function Container({
             open: state.isOpen,
             ref: containerRef,
             style: state.styles.container,
-            className: classNames({
-              [state.namespace]: true,
-              ...state.className,
-              ...mapKeys(mapOfChildrenUsed, (value, key) => `${state.namespace}-has-${key.toLowerCase()}`)
-            }),
-            css: !actions.hasStyles('container') ? styles.Container : undefined
+            className: getClassName(state.className),
+            css: !actions.hasStyles('container')
+              ? styles.Container({ hasHeaderBodyAndFooter })
+              : undefined
           }, children)
         }
       </div>
