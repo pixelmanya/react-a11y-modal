@@ -110,8 +110,8 @@ const Navigation = ({
       ? Array.from(NavLinks)
         .filter(navItem =>
           navItem.href
-            .replace(document.location.href, '')
-            .replace('/#', '') ===
+            .replace(document.location.origin + document.location.pathname, '')
+            .replace('#', '') ===
         element.id
         )
       : [undefined]
