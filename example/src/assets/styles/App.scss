@@ -58,12 +58,16 @@ html,
   height: 100vh;
   grid-template-columns: get-rem(250px) 1fr;
   grid-template-rows: 1fr auto;
-  transition: transform .3s linear;
+  transition: filter .3s ease-in-out;
 
   @include respond-to-max(
     get-rem(1110px)
   ) {
     display: block;
+  }
+
+  .modal-is-opened & {
+    filter: blur(10px);
   }
 }
 
@@ -180,11 +184,17 @@ html,
 
     &:hover {
       color: #9b59b6;
+      background: -webkit-linear-gradient(45deg, #9b59b6, #2980b9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     &--active {
       font-weight: bold;
       color: #9b59b6;
+      background: -webkit-linear-gradient(45deg, #9b59b6, #2980b9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
   }
 }
@@ -261,15 +271,14 @@ html,
   }
 }
 
-.modal-is-opened .App {
-  filter: blur(10px);
-}
-
 .Title {
   font-size: 2.5rem;
   font-weight: bold;
   padding-top: 3rem;
   margin: 0 0 3rem;
+  background: -webkit-linear-gradient(45deg, #9b59b6, #2980b9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .Example {
@@ -295,7 +304,7 @@ button:active {
   outline-offset: -3px;
 }
 
-.Introduction {
+%blockquote {
   display: block;
   border-left: 10px solid #3498db;
   background: rgba(#3498db, .3);
@@ -305,6 +314,10 @@ button:active {
   font-size: 1.25rem;
   line-height: 1.5;
 
+  p + & {
+    margin-top: 2rem;
+  }
+
   @include respond-to-max(
     get-rem(800px)
   ) {
@@ -312,6 +325,32 @@ button:active {
     border-left-width: 5px;
     margin: 0 -1rem;
   }
+
+  [role=image] {
+    margin-left: get-rem(5px);
+    font-size: 1.5em;
+    vertical-align: middle;
+  }
+}
+
+.Introduction {
+  @extend %blockquote;
+}
+
+.Hint {
+  @extend %blockquote;
+
+  font-size: 1rem;
+  background: rgba(#f1c40f, .3);
+  border-color: #f1c40f;
+}
+
+.CodeHighlight {
+  display: inline-block;
+  padding: get-rem(3px);
+  margin: get-rem(1x) 0;
+  background: rgba(#34495e, .1);
+  border-radius: 3px;
 }
 
 .Code {
@@ -356,44 +395,19 @@ button:active {
   }
 }
 
+/* BasicModal */
+
+.BasicModal {
+  .ModalHeader__title {
+    padding-bottom: 1rem;
+  }
+}
+
 /* Styling Modal in general */
-
-.Modal-has-header.Modal-has-body.Modal-has-footer {
-  grid-template-rows: 5rem auto 5rem;
-}
-
-.Modal-has-header.Modal-has-body {
-  grid-template-rows: 5rem auto;
-}
-
-.ModalHeader {
-  padding: 1rem;
-}
 
 .ModalHeader__title {
   font-size: 1.5rem;
   line-height: 2;
-}
-
-.ModalBody {
-  padding: 1rem;
-  overflow-y: auto;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.Modal {
-  color: #34495e;
-}
-
-.ModalBackdrop {
-  outline: none;
-}
-
-.ModalFooter {
-  box-shadow: 0 5px 30px rgba(0, 0, 0, .4);
-  padding: 1rem;
-  text-align: right;
 }
 
 .ModalFooter__button {

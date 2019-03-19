@@ -57,8 +57,11 @@ const NavTree = ({
 }) => {
   return (
     <ul className={`NavigationLinks NavigationLinks--level-${level}`}>
-      { children.map(node =>
-        <li className='NavigationLinks__item'>
+      { children.map((node, idx) =>
+        <li
+          key={idx}
+          className='NavigationLinks__item'
+        >
           <a
             onClick={scrollToSection(node.href)}
             href={'#' + (node.href ? node.href : '')}
@@ -102,7 +105,7 @@ const Navigation = ({
         )
       : [undefined]
 
-    inView.threshold(0.3)
+    inView.threshold(0.2)
 
     const checkVisibility = () => {
       Array.from(Sections).map(Section => {

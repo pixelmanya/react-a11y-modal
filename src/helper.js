@@ -21,8 +21,8 @@ export const createElement =
       tagName,
       {
         className: `${state.namespace}${type}`,
-        style: state.styles[prop],
-        css: !hasStyles ? styles[type] : undefined,
+        style: state.styles && state.styles[prop] ? state.styles[prop] : undefined,
+        css: !hasStyles && state.styles !== false ? styles[type] : undefined,
         ref: node => {
           ref.current = node
 

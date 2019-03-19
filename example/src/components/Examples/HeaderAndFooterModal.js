@@ -28,13 +28,13 @@ const ModalWithHeaderAndFooter = ({
             onClick={actions.close}
             className='ModalFooter__button ModalFooter__button--cancel'
           >
-            Cancel and close
+            Cancel
           </button>
           <button
             onClick={actions.close}
             className='ModalFooter__button ModalFooter__button--cta'
           >
-            Save
+            Accept
           </button>
         </Modal.Footer>
       </>

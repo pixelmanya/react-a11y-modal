@@ -85,17 +85,17 @@ function App () {
               id='foreword'
             >
               <blockquote className='Introduction'>
-                <strong>Foreword</strong><br />
-              I've built this accessible modal dialog for React mainly because I wanted to learn the recently
-              officially introduced <a href='https://reactjs.org/docs/hooks-intro.html' target='blank'>React Hooks</a> (16.8.0). I also wanted to give developers a modal which they could use right away
-              without worrying much about styling.
+                <strong>Foreword</strong><span role='image'>👋</span><br />
+                I've built this accessible modal dialog for React mainly because I wanted to learn the recently
+                officially introduced <a href='https://reactjs.org/docs/hooks-intro.html' target='blank'>React Hooks</a> (16.8.0). I also wanted to give developers a modal which they could use right away
+                without worrying much about styling.
               </blockquote>
             </Section>
             <Section
               id='installation'
               title='Installation'
               emoji='⚒'
-              text='To install the latest stable version use npm or yarn.'
+              Text='To install the latest stable version use npm or yarn.'
             >
               <Highlighter language='bash'>
                 {`
@@ -108,7 +108,7 @@ $ yarn add react-a11y-modal
               id='usage'
               title='Usage'
               emoji='🤔'
-              text='All props are entirely optional. However you can find a detailed overview below:'
+              Text='All props are entirely optional. However you can find a detailed overview below:'
             >
               <Highlighter>
                 {`
@@ -211,14 +211,28 @@ import { Modal } from 'react-a11y-modal'
               id='accessibility'
               title='Accessibility'
               emoji='♿️'
-              text='Pellentesque dignissim ultrices ipsum, nec viverra nunc molestie nec. Sed consequat semper libero, at scelerisque nibh. Quisque eu aliquet elit. Nam mattis sem orci, a mattis odio bibendum a. Proin et mollis massa. In et leo pulvinar, ultrices tellus quis, porttitor libero. Vestibulum ac finibus purus, eleifend semper turpis. Suspendisse vitae consequat ligula, ut scelerisque felis. Ut quis scelerisque augue, a laoreet nisl. Nullam id auctor elit, ut vestibulum dolor. Quisque varius finibus odio, non euismod dolor varius ut. Vivamus placerat ac odio vel imperdiet. Vivamus lacinia nisi sit amet lorem posuere suscipit. Nam velit arcu, lacinia id laoreet et, congue at urna. Nullam rhoncus, diam a vestibulum consectetur, nisi neque malesuada velit, in scelerisque ligula est et turpis.'
+              Text={() =>
+                <>
+                  As defined in the <a href='https://www.w3.org/TR/wai-aria-practices/#dialog_modal' target='blank'>W3C Dialog Specification</a>, the focus should move to an element within the opened modal. That said, you will need, in all circumstances, to place a tabbable element inside of the modal. Typically this could be a button which closes the modal again.
+                </>
+              }
             />
             <Section
               id='styling'
               title='Styling'
               emoji='💅'
-              text='Pellentesque dignissim ultrices ipsum, nec viverra nunc molestie nec. Sed consequat semper libero, at scelerisque nibh. Quisque eu aliquet elit. Nam mattis sem orci, a mattis odio bibendum a. Proin et mollis massa. In et leo pulvinar, ultrices tellus quis, porttitor libero. Vestibulum ac finibus purus, eleifend semper turpis. Suspendisse vitae consequat ligula, ut scelerisque felis. Ut quis scelerisque augue, a laoreet nisl. Nullam id auctor elit, ut vestibulum dolor. Quisque varius finibus odio, non euismod dolor varius ut. Vivamus placerat ac odio vel imperdiet. Vivamus lacinia nisi sit amet lorem posuere suscipit. Nam velit arcu, lacinia id laoreet et, congue at urna. Nullam rhoncus, diam a vestibulum consectetur, nisi neque malesuada velit, in scelerisque ligula est et turpis.'
-            />
+              Text={() =>
+                <>
+                  For the sake of simplicity react-a11y-modal ships with a basic CSS layout which you can easily extend or get rid of if you want to.
+                  However, if you want to have full control of styling, you can do that. Either pass a custom <code className='CodeHighlight'>namespace</code> as a prop and add your own styles and/or pass an empty <code className='CodeHighlight'>styles</code> prop.
+                </>
+              }
+            >
+              <blockquote className='Hint'>
+                <strong>Did you know?</strong><span role='image'>☝️</span><br />
+                If you pass all of the (optional) skeleton components <code className='CodeHighlight'>{`<Modal.Header />`}</code>, <code className='CodeHighlight'>{`<Modal.Body />`}</code> and <code className='CodeHighlight'>{`<Modal.Footer />`}</code> we will make the Header and the Footer sticky, the Body will be scrollable out of the box. <a href='#with-header-body-and-footer'>Check the demo.</a>
+              </blockquote>
+            </Section>
             { state && state.map(({
               name,
               label,
@@ -233,7 +247,7 @@ import { Modal } from 'react-a11y-modal'
                 <Section
                   id={name}
                   title={label}
-                  text={text}
+                  Text={text}
                   emoji='👈 👀'
                   key={name}
                 >
@@ -241,7 +255,7 @@ import { Modal } from 'react-a11y-modal'
                     onClick={() => setState(true)}
                     className='ExampleButton'
                   >
-                    Show me
+                    Let's see!
                   </button>
                   { code && (
                     <Highlighter>

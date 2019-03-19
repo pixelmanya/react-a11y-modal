@@ -3,37 +3,30 @@ import { Modal } from 'react-a11y-modal'
 import { ReactComponent as Close } from '../../assets/icons/close.svg'
 
 const BasicModal = ({
-  className,
   mountTo,
   onAfterClose
 }) => (
   <Modal.Container
-    className={className}
+    className='BasicModal'
     mountTo={mountTo}
     onAfterClose={onAfterClose}
   >
     { ({ actions }) =>
-      <>
-        <Modal.Header>
-          <h1 className='ModalHeader__title'>
-            Basic Modal
-          </h1>
-          <button
-            onClick={actions.close}
-            className='CloseButton'
-          >
-            <Close className='ConfirmationModalClose__icon' />
-          </button>
-        </Modal.Header>
-        <Modal.Body>
-          <p>
-            This is a very basic modal. As defined in the W3C Dialog Modal Specification, the
-            focus should move to an element within the opened modal. That said, you will, under all
-            circumstances, need to place a toggable element inside of the modal. Typically this could be
-            a button which closes the modal again.
-          </p>
-        </Modal.Body>
-      </>
+      <Modal.Body>
+        <h1 className='ModalHeader__title'>
+          Basic Modal
+        </h1>
+        <button
+          onClick={actions.close}
+          className='CloseButton'
+        >
+          <Close className='ConfirmationModalClose__icon' />
+        </button>
+        <p>
+          This is a very basic modal. You don't even need <code className='CodeHighlight'>{`<Modal.Body />`}</code> here and
+          could rather add some custom elements, but it's good to have something in place for you.
+        </p>
+      </Modal.Body>
     }
   </Modal.Container>
 )

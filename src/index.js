@@ -108,7 +108,10 @@ function Container({
     children,
     Modal
   })
-  const hasHeaderBodyAndFooter = mapOfChildrenUsed.Header && mapOfChildrenUsed.Body && mapOfChildrenUsed.Footer
+  const hasHeaderBodyAndFooter =
+    mapOfChildrenUsed.Header &&
+    mapOfChildrenUsed.Body &&
+    mapOfChildrenUsed.Footer
 
   // effect for applying potential styles
   // to backdrop and container
@@ -249,7 +252,7 @@ function Container({
             ref: containerRef,
             style: state.styles.container,
             className: getClassName(state.className),
-            css: !actions.hasStyles('container')
+            css: state.styles && !actions.hasStyles('container')
               ? styles.Container({ hasHeaderBodyAndFooter })
               : undefined
           }, children)
@@ -292,17 +295,20 @@ Container.propTypes = {
   shouldCloseOnEscClick: PropTypes.bool,
   waitUntilUnmountInMs: PropTypes.number,
 
-  styles: PropTypes.shape({
-    backdrop: PropTypes.object,
-    backdropAfterMount: PropTypes.object,
-    backdropBeforeUnmount: PropTypes.object,
-    container: PropTypes.object,
-    containerAfterMount: PropTypes.object,
-    containerBeforeUnmount: PropTypes.object,
-    header: PropTypes.object,
-    body: PropTypes.object,
-    footer: PropTypes.object
-  }),
+  styles: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.shape({
+      backdrop: PropTypes.object,
+      backdropAfterMount: PropTypes.object,
+      backdropBeforeUnmount: PropTypes.object,
+      container: PropTypes.object,
+      containerAfterMount: PropTypes.object,
+      containerBeforeUnmount: PropTypes.object,
+      header: PropTypes.object,
+      body: PropTypes.object,
+      footer: PropTypes.object
+    })
+  ]),
 
   onClose: PropTypes.oneOfType([
     PropTypes.bool,
