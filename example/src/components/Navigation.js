@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import inView from 'in-view'
 import { Definition as Examples } from './Examples'
 
 const NavItems = [
@@ -85,39 +84,47 @@ const NavTree = ({
   )
 }
 
+const createObserver = (callback, options = {
+  threshold: 0
+}) =>
+  window.IntersectionObserver !== undefined
+    ? new window.IntersectionObserver(
+      callback,
+      options
+    )
+    : undefined
+
 const Navigation = ({
   navRef
 }) => {
   // effect for highlighting
   // current section in navigation
+
   useEffect(() => {
     const NavLinks = document.querySelectorAll('.Navigation__link')
     const Sections = document.querySelectorAll('.Section[id]')
     const activeClassName = 'Navigation__link--active'
-    const visible = []
+    let visible = []
     const getLinkElement = element => element
       ? Array.from(NavLinks)
         .filter(navItem =>
           navItem.href
             .replace(document.location.origin, '')
             .replace('/#', '') ===
-          element.id
+        element.id
         )
       : [undefined]
-
-    inView.threshold(0.2)
-
-    const checkVisibility = () => {
-      Array.from(Sections).map(Section => {
+    const onVisible = (entries, observer) => {
+      entries.forEach(entry => {
+        const Section = entry.target
         const idx = visible.indexOf(Section)
 
-        if (inView.is(Section)) {
+        if (entry.intersectionRatio) {
           if (idx === -1) {
-            visible.push(Section)
+            visible.unshift(Section)
           } else {
             visible.splice(idx, 1)
             visible.unshift(Section)
-            visible.reverse()
           }
         } else if (idx !== -1) {
           const [link] = getLinkElement(Section)
@@ -146,12 +153,13 @@ const Navigation = ({
         }
       })
     }
+    const observer = createObserver(onVisible)
 
-    document.addEventListener('scroll', checkVisibility)
+    if (observer) {
+      Array.from(Sections).map(el => observer.observe(el))
+    }
 
-    checkVisibility()
-
-    return () => document.removeEventListener('scroll', checkVisibility)
+    return () => observer ? observer.disconnect() : null
   })
 
   return (

@@ -5,8 +5,6 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@emotion/styled": "^10.0.9",
-    "in-view": "^0.6.1",
     "prop-types": "^15.6.2",
     "react": "link:../node_modules/react",
     "react-a11y-modal": "link:../",
