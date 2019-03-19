@@ -105,11 +105,12 @@ const Navigation = ({
     const Sections = document.querySelectorAll('.Section[id]')
     const activeClassName = 'Navigation__link--active'
     let visible = []
+    let initialCall = true
     const getLinkElement = element => element
       ? Array.from(NavLinks)
         .filter(navItem =>
           navItem.href
-            .replace(document.location.origin, '')
+            .replace(document.location.href, '')
             .replace('/#', '') ===
         element.id
         )
@@ -121,7 +122,7 @@ const Navigation = ({
 
         if (entry.intersectionRatio) {
           if (idx === -1) {
-            visible.unshift(Section)
+            visible[initialCall ? 'push' : 'unshift'](Section)
           } else {
             visible.splice(idx, 1)
             visible.unshift(Section)
@@ -152,6 +153,8 @@ const Navigation = ({
           link.classList[idx > 0 ? 'remove' : 'add'](activeClassName)
         }
       })
+
+      initialCall = false
     }
     const observer = createObserver(onVisible)
 
