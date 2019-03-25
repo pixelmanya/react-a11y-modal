@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 const Section = ({
   id,
   title,
+  titleClassName = 'Section__title',
   emoji,
   Text,
   children
@@ -13,7 +14,7 @@ const Section = ({
     className='Section'
   >
     { title && (
-      <h2 className='Section__title'>
+      <h2 className={titleClassName}>
         { title }
         { emoji && (
           <span className='Section__emoji' role='img'>

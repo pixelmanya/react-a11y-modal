@@ -19,7 +19,7 @@
   &--form &Header {
     padding: .5rem 1rem 0;
     border: 0;
-    color: rebeccapurple;
+    color: #9b59b6;
   }
 
   &--form &Footer {
@@ -63,8 +63,8 @@
     border-radius: 4px;
 
     &:focus {
-      border: 2px solid rebeccapurple;
-      color: rebeccapurple;
+      border: 2px solid #9b59b6;
+      color: #9b59b6;
       font-weight: bold;
     }
   }
@@ -73,8 +73,8 @@
     display: block;
     width: 100%;
     color:white;
-    border: 2px solid rebeccapurple;
-    background: rebeccapurple;
+    border: 2px solid #9b59b6;
+    background: #9b59b6;
     font-size: 1rem;
     border-radius: 3px;
     padding: .75rem 1rem;
@@ -82,7 +82,7 @@
 
     &:hover,
     &:active {
-      background: rebeccapurple;
+      background: #9b59b6;
       color: white;
     }
 

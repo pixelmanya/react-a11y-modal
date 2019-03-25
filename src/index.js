@@ -31,7 +31,7 @@ export const defaultProps = {
   isOpen: true,
   shouldCloseOnBackdropClick: true,
   shouldCloseOnEscClick: true,
-  whenOpenedAddClassNameToBody: 'modal-is-opened',
+  classNameWhenOpenend: 'modal-is-opened',
   waitUntilUnmountInMs: 0,
 
   styles: {
@@ -189,10 +189,10 @@ function Container({
   // effect for adding class to
   // body element
   useEffect(() => {
-    document.body.classList.add(state.whenOpenedAddClassNameToBody)
+    document.body.classList.add(state.classNameWhenOpenend)
 
     return () =>
-      document.body.classList.remove(state.whenOpenedAddClassNameToBody)
+      document.body.classList.remove(state.classNameWhenOpenend)
   })
 
   const getCreateElementFn = prop => actions.hasStyles(prop) ? React.createElement : jsx
@@ -226,7 +226,7 @@ function Container({
   // for render
   let Wrapper =
     <FocusTrap>
-      <div>
+      <div className={state.namespace}>
         {
           getCreateElementFn('backdrop')(state.backdropTagName, {
             key: 1,
@@ -289,7 +289,7 @@ Container.propTypes = {
     PropTypes.object
   ]),
   isOpen: PropTypes.bool,
-  whenOpenedAddClassNameToBody: PropTypes.string,
+  classNameWhenOpenend: PropTypes.string,
   mounTo: PropTypes.instanceOf(document.Element),
   shouldCloseOnBackdropClick: PropTypes.bool,
   shouldCloseOnEscClick: PropTypes.bool,

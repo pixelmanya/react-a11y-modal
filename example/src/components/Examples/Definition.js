@@ -12,6 +12,7 @@ const Examples = [
     text: `
       A very basic modal.
     `,
+    codeLink: 'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/BasicModal.js',
     code: `
 import React from 'react'
 import { Modal } from 'react-a11y-modal'
@@ -41,6 +42,7 @@ const BasicModal = () =>
     label: 'Header, Body and Footer',
     value: false,
     Component: HeaderAndFooterModal,
+    codeLink: 'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/HeaderAndFooterModal.js',
     code: `
 import React from 'react'
 import { Modal } from 'react-a11y-modal'
@@ -86,6 +88,7 @@ const ModalWithHeaderAndFooter = () =>
     text: `
       This example shows a custom Confirmation Modal.
     `,
+    codeLink: 'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/ConfirmationModal.js',
     code: `
 import React from 'react'
 import { Modal } from 'react-a11y-modal'
@@ -130,51 +133,120 @@ export const ConfirmationModal = () =>
     Component: ConfirmationModal
   },
   {
-    name: 'form-modal',
-    label: 'Form modal',
+    name: 'sign-in-modal',
+    label: 'Sign-in modal',
     value: false,
+    text: `
+      This example shows a custom Sign-in Modal which utilises custom CSS transition.
+    `,
     Component: FormModal,
+    codeLink: 'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/FormModal.js',
     code: `
-// This code is not complete and much simplified
-// so it's a easier to grasp. If you want to
-// see the actual component check example
-// directory on Github
-
-import React from 'react'
+import React, { useState } from 'react'
 import { withModal, Modal } from 'react-a11y-modal'
+import { ReactComponent as Close } from '../../assets/icons/close.svg'
+import '../../assets/styles/examples/SignInModal.scss'
+
+const formState = [{
+  name: 'username',
+  label: 'Username',
+  value: '',
+  autoComplete: 'username'
+}, {
+  name: 'password',
+  label: 'Password',
+  value: '',
+  type: 'password',
+  autoComplete: 'current-password'
+}]
 
 const FormModal = ({
   mountTo,
   onAfterClose
-}) => withModal(() =>
-  <>
-    <Modal.Header>
-      { ({ actions }) =>
-        <>
-          <strong>
+}) => withModal(() => {
+  const [fields, setFormFields] = useState(formState)
+  const onFieldChange = event => {
+    const { name, value } = event.target
+    let state = fields.slice(0)
+    state = state.map(item => item.name === name ? ({
+      ...item,
+      value
+    }) : item)
+
+    setFormFields(state)
+  }
+  const getFieldByName = name => fields.find(item => item.name === name)
+  const Username = getFieldByName('username')
+  const Password = getFieldByName('password')
+  const hasInput = Username.value.length && Password.value.length
+
+  return (
+    <>
+      <Modal.Header>
+        { ({ actions }) =>
+          <>
+            <strong className='ModalHeader__title'>
+              Sign in
+            </strong>
+            <button
+              tabIndex='0'
+              aria-label='Close'
+              onClick={actions.close}
+              className='CloseButton'
+            >
+              <Close className='CloseButton__icon' />
+            </button>
+          </>
+        }
+      </Modal.Header>
+      <Modal.Body>
+        <form className='Form' autoComplete='off'>
+          { fields && fields.map(({
+            name,
+            label,
+            value,
+            ...attr
+          }, idx) =>
+            <div
+              key={name}
+              className='Form__row'
+            >
+              <label className='Form__label'>
+                { label }
+                <input
+                  tabIndex={idx + 1}
+                  name={name}
+                  value={value}
+                  onChange={onFieldChange}
+                  className='Form__input'
+                  {...attr}
+                />
+              </label>
+            </div>
+          ) }
+        </form>
+      </Modal.Body>
+      <Modal.Footer>
+        { ({ actions }) =>
+          <button
+            disabled={!hasInput}
+            onClick={actions.close}
+            className={\`
+              Form__button
+              \${!hasInput ? 'Form__button--disabled' : ''}
+            \`}
+          >
             Sign in
-          </strong>
-          <button onClick={actions.close}>
-            <Close className='CloseButton__icon' />
           </button>
-        </>
-      }
-    </Modal.Header>
-    <Modal.Body>
-      <Form />
-    </Modal.Body>
-    <Modal.Footer>
-      { ({ actions }) =>
-        <button
-          disabled={!hasInput}
-          onClick={actions.close}
-        >
-          Sign in
-        </button>
-      }
-    </Modal.Footer>
-  </>
+        }
+      </Modal.Footer>
+    </>
+  )
 }, {
+  mountTo,
+  className: {
+    'Modal--form': true
+  },
   styles: {
     backdrop: {
       opacity: 0,
@@ -205,6 +277,8 @@ const FormModal = ({
   waitUntilUnmountInMs: 450,
   onAfterClose
 })
+
+export default FormModal
     `
   }
 ]

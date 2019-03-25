@@ -25,6 +25,7 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  border: none;
 }
 
 :root {
@@ -68,6 +69,97 @@ html,
 
   .modal-is-opened & {
     filter: blur(10px);
+  }
+}
+
+.TableWrapper {
+  position: relative;
+  margin: 0 -2rem;
+  border-radius: 4px;
+  overflow: hidden;
+  background: linear-gradient(-68deg, #2980b9, #8e44ad);
+
+  @include respond-to-max(
+    get-rem(800px)
+  ) {
+    overflow-x: auto;
+    margin: 0 -1rem;
+  }
+}
+
+.Table {
+  display: table;
+  table-layout: auto;
+  width: 100%;
+  font-size: 1rem;
+  color: white;
+
+  &Head {
+    position: relative;
+    display: table-header-group;
+    width: 100%;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: .8125rem;
+    letter-spacing: 1px;
+    background: rgba(white, .15);
+
+    &__row {
+      display: table-row;
+    }
+
+    &__cell {
+      display: table-cell;
+      padding: 1rem 2rem;
+
+      &:first-child {
+        @include respond-to-max(
+          get-rem(800px)
+        ) {
+          padding: 1rem;
+        }
+      }
+    }
+  }
+
+  &Body {
+    display: table-footer-group;
+    width: 100%;
+    position: relative;
+
+    &__row {
+      display: table-row;
+    }
+
+    &__cell {
+      display: table-cell;
+      padding: 1rem 2rem;
+      padding-right: 0;
+      line-height: 1.5;
+
+      &:first-child {
+        font-weight: bold;
+
+        @include respond-to-max(
+          get-rem(800px)
+        ) {
+          padding: 1rem;
+        }
+      }
+
+      &:last-child {
+        padding-right: 2rem;
+      }
+    }
+  }
+
+  a {
+    color: white !important;
+    border-bottom: 1px solid rgba(white, .5) !important;
+
+    &:hover {
+      border-bottom-color: white !important;
+    }
   }
 }
 
@@ -202,7 +294,7 @@ html,
 .Content {
   position: relative;
   grid-area: content;
-  padding: 0 0 2rem;
+  padding: 0 0 3rem;
   transition: transform .3s ease;
 
   @include respond-to-max(50rem) {
@@ -274,8 +366,8 @@ html,
 .Title {
   font-size: 2.5rem;
   font-weight: bold;
+  margin: 1rem 0 0 0;
   padding-top: 3rem;
-  margin: 0 0 3rem;
   background: -webkit-linear-gradient(45deg, #9b59b6, #2980b9);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -295,6 +387,11 @@ html,
     &:hover {
       background: #2980b9;
     }
+  }
+
+  &Link {
+    position: relative;
+    font-size: 1rem;
   }
 }
 
@@ -355,9 +452,10 @@ button:active {
 
 .Code {
   display: block;
+  max-height: get-rem(800px);
   font-size: 1rem;
   line-height: 1.5;
-  margin: 1rem -2rem !important;
+  margin: 1rem -2rem 0 !important;
   padding: 1.25rem 2rem !important;
   border-radius: 4px;
   white-space: pre-wrap;
@@ -368,14 +466,27 @@ button:active {
     padding: 1rem !important;
     margin: 1rem -1rem !important;
   }
+
+  & + * {
+    margin-top: 2rem;
+  }
 }
 
 .Section {
-  margin: 0;
+  margin: 2rem 0 0 0;
+  padding-top: 3rem;
 
   &__title {
     font-size: 1.5rem;
-    padding-top: 3rem;
+    margin-bottom: 1rem;
+
+    &--large {
+      font-size: 2rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.25rem;
     margin-bottom: 1rem;
   }
 
@@ -388,6 +499,7 @@ button:active {
   &__text {
     font-size: 1rem;
     line-height: 1.5;
+    margin-bottom: 1rem;
   }
 
   .code {

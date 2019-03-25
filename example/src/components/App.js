@@ -65,7 +65,7 @@ function App () {
               title='Tweet'
               frameBorder='0'
               scrolling='no'
-              src='http://platform.twitter.com/widgets/tweet_button.html?text=https%3A%2F%2Fgithub.com%2Fpixelmanya%2Freact-a11y-modal%2F&amp;count=horizontal'
+              src='https://platform.twitter.com/widgets/tweet_button.html?text=https%3A%2F%2Fgithub.com%2Fpixelmanya%2Freact-a11y-modal%2F&amp;count=horizontal'
               width='62px'
               height='20px'
             />
@@ -86,9 +86,9 @@ function App () {
             >
               <blockquote className='Introduction'>
                 <strong>Foreword</strong><span role='image'>👋</span><br />
-                I've built this accessible modal dialog for React mainly because I wanted to learn the recently
-                officially introduced <a href='https://reactjs.org/docs/hooks-intro.html' target='blank'>React Hooks</a> (16.8.0). I also wanted to give developers a modal which they could use right away
-                without worrying much about styling.
+                This accessible modal dialog for <a href='https://reactjs.org' target='blank'>React</a> was mainly built because I wanted to learn the recently
+                introduced <a href='https://reactjs.org/docs/hooks-intro.html' target='blank'>React Hooks</a>. Furthermore I wanted to provide developers a decent-looking modal which they could use right away
+                without worrying much about styling and stuff.
               </blockquote>
             </Section>
             <Section
@@ -110,134 +110,373 @@ $ yarn add react-a11y-modal
               emoji='🤔'
               Text='All props are entirely optional. However you can find a detailed overview below:'
             >
+              <h3 className='Section__subtitle' />
               <Highlighter>
                 {`
 import { Modal } from 'react-a11y-modal'
 
-<Modal.Container
-  // @string Used for producing HTML classNames
-  // (.ModalBackdrop, .Modal, .ModalHeader, etc.)
-  // @default "Modal"
-  namespace="Modal"
-  // @string Used for backdrop tag element
-  // @default "div"
-  backdropTagName="div"
-  // @string Used for container tag element
-  // @default "dialog"
-  containerTagName="dialog"
-  // @(string|array|object) Additional classNames for Container
-  // @default {}
-  className={{}}
-  // @domElement to mount the modal (DOM element)
-  // @default none
-  mountTo={element}
-  // @boolean flag if modal should be opened
-  // @default true
-  isOpen={true}
-  // @boolean flag if click on backdrop should close the modal
-  // @default true
-  shouldCloseOnBackdropClick={true}
-  // @boolean flag if click on escape key should close the modal
-  // @default true
-  shouldCloseOnEscClick={true}
-  // @string which is added to document.body's
-  // classList while modal is being open
-  // @default "modal-is-opened"
-  whenOpenedAddClassNameToBody="modal-is-opened"
-  // @number in milliseconds determining when the modal
-  // should unmount (useful for custom css transitions)
-  // @default 0
-  waitUntilUnmountInMs={0}
-  // @object with CSS styles for each element of the modal
-  // @default {}
-  styles: {
-    backdrop: {}, // general styles for backdrop
-    backdropAfterMount: {}, // styles for backdrop after mount
-    backdropBeforeUnmount: {}, // styles for backdrop before unmount
-    container: {}, // general styles for <Modal.Container />
-    containerAfterMount: {}, // …
-    containerBeforeUnmount: {}, // …
-    header: {}, // general styles for <Modal.Header />
-    body: {}, // general styles for <Modal.Body />
-    footer: {} // general styles for <Modal.Footer />
-  },
-  // @function will be called before modal is shown
-  // @default () => {}
-  onBeforeShow={() => {}},
-  // @function will be called after modal was shown
-  // @default () => {}
-  onAfterShow={() => {}},
-  // @function will be called before modal is closed
-  // @default () => {}
-  onBeforeClose={() => {}},
-  // @function will be called after modal was closed
-  // @default () => {}
-  onAfterClose={() => {}},
-  // @function will be called when user clicks ESC key while modal is shown
-  // @default () => {}
-  onEscClick={() => {}},
-  // @function will be called when user clicks on backdrop
-  // @default () => {}
-  onBackdropClick={() => {}},
-  // @object containing callback function for each element being used
-  // @default {}
-  refs={{
-    backdrop: node => {},
-    container: node => {},
-    header: node => {},
-    body: node => {},
-    footer: node => {}
-  }}
->
-  // react-a11y-modal ships with
-  // an skeleton like the following.
-  // It's completely optional though.
-  // The only mandatory element is
-  // <Modal.Container />
-  <Modal.Header>
-    <h1>My Modal Title</h1>
-  </Modal.Header>
-  <Modal.Body>
-    <p>Some content</p>
-  </Modal.Body>
-  <Modal.Footer>
-    <h1>Additional footer</h1>
-  </Modal.Footer>
-</Modal.Container>
+export default () =>
+  <Modal.Container>
+    // you can pass a function as
+    // direct child which will receive
+    // an object with action methods (e.g. close)
+    {({ actions }) =>
+      <>
+        <Modal.Header>
+          <h1>Title</h1>
+          <button onClick={actions.close}>Close</h1>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Content</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <button>Button</button>
+        </Modal.Footer>
+      </>
+    }
+  </Modal.Container>
+
+// The above produces the following mark-up:
+//
+// <div className='Modal'>
+//   <div className='ModalBackdrop' />
+//   <dialog className='ModalContainer'>
+//     <div className='ModalHeader'>
+//       <h1>Title</h1>
+//       …
+//     </div>
+//     <div className='ModalBody'>
+//       <p>Content</p>
+//     </div>
+//     <div className='ModalFooter'>
+//       <button>Button</button>
+//     </div>
+//   </dialog>
+// </div>
                 `}
               </Highlighter>
+              <h3 className='Section__subtitle'>
+                Props
+              </h3>
+              <div className='TableWrapper'>
+                <div className='Table'>
+                  <div className='TableHead'>
+                    <div className='TableHead__row'>
+                      <div className='TableHead__cell' />
+                      <div className='TableHead__cell'>
+                        Type
+                      </div>
+                      <div className='TableHead__cell'>
+                        Default
+                      </div>
+                      <div className='TableHead__cell'>
+                        Description
+                      </div>
+                    </div>
+                  </div>
+                  <div className='TableBody'>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        isOpen
+                      </div>
+                      <div className='TableBody__cell'>
+                        Boolean
+                      </div>
+                      <div className='TableBody__cell'>
+                        true
+                      </div>
+                      <div className='TableBody__cell'>
+                        Determines if the modal should be shown
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        namespace
+                      </div>
+                      <div className='TableBody__cell'>
+                        String
+                      </div>
+                      <div className='TableBody__cell'>
+                        Modal
+                      </div>
+                      <div className='TableBody__cell'>
+                        Used for producing HTML classNames
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        styles
+                      </div>
+                      <div className='TableBody__cell'>
+                        Object
+                      </div>
+                      <div className='TableBody__cell'>
+                        {`{}`}
+                      </div>
+                      <div className='TableBody__cell'>
+                        Object with CSS properties for modal elements.
+                        <br />
+                        <pre>
+                          {`
+{
+  backdrop: {},
+  container: {},
+  header: {},
+  body: {},
+  footer: {},
+  backdropAfterMount: {},
+  backdropBeforeUnmount: {},
+  containerAfterMount: {},
+  containerBeforeUnmount: {}
+}
+  `}
+                        </pre>
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        refs
+                      </div>
+                      <div className='TableBody__cell'>
+                        Object
+                      </div>
+                      <div className='TableBody__cell'>
+                        {`{}`}
+                      </div>
+                      <div className='TableBody__cell'>
+                        Object as shown below.
+                        As value it accepts a function and passes the DOM element as first argument.
+                        <pre>
+                          {`
+{
+  backdrop: node => {},
+  container: node => {},
+  header: node => {},
+  body: node => {},
+  footer: node => {}
+}
+  `}
+                        </pre>
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        className
+                      </div>
+                      <div className='TableBody__cell'>
+                        String
+                      </div>
+                      <div className='TableBody__cell'>
+                        -
+                      </div>
+                      <div className='TableBody__cell'>
+                        Additional classNames for Container
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        classNameWhenOpened
+                      </div>
+                      <div className='TableBody__cell'>
+                        String
+                      </div>
+                      <div className='TableBody__cell'>
+                        modal-is-opened
+                      </div>
+                      <div className='TableBody__cell'>
+                        Classname which will be added to document.body when modal is shown
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        mountTo
+                      </div>
+                      <div className='TableBody__cell'>
+                        DOM Element
+                      </div>
+                      <div className='TableBody__cell'>
+                        -
+                      </div>
+                      <div className='TableBody__cell'>
+                        DOM Element which will be used as the modals root (see <a href='https://reactjs.org/docs/portals.html' target='blank'>React Portal</a>)
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        backdropTagName
+                      </div>
+                      <div className='TableBody__cell'>
+                        String
+                      </div>
+                      <div className='TableBody__cell'>
+                        div
+                      </div>
+                      <div className='TableBody__cell'>
+                        Element type for backdrop
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        containerTagName
+                      </div>
+                      <div className='TableBody__cell'>
+                        String
+                      </div>
+                      <div className='TableBody__cell'>
+                        div
+                      </div>
+                      <div className='TableBody__cell'>
+                        Element type for container
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        shouldCloseOnBackdropClick
+                      </div>
+                      <div className='TableBody__cell'>
+                        Boolean
+                      </div>
+                      <div className='TableBody__cell'>
+                        true
+                      </div>
+                      <div className='TableBody__cell'>
+                        Determines if the modal should be closed on backdrop click
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        shouldCloseOnEscClick
+                      </div>
+                      <div className='TableBody__cell'>
+                        Boolean
+                      </div>
+                      <div className='TableBody__cell'>
+                        true
+                      </div>
+                      <div className='TableBody__cell'>
+                        Determines if the modal should be closed on escape key click
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        onEscClick
+                      </div>
+                      <div className='TableBody__cell'>
+                        Function
+                      </div>
+                      <div className='TableBody__cell'>
+                        () => {`{}`}
+                      </div>
+                      <div className='TableBody__cell'>
+                        Callback which will be invoked when user clicked on escape key
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        onBackdropClick
+                      </div>
+                      <div className='TableBody__cell'>
+                        Function
+                      </div>
+                      <div className='TableBody__cell'>
+                        () => {`{}`}
+                      </div>
+                      <div className='TableBody__cell'>
+                        Callback which will be invoked when user clicked on backdrop
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        waitUntilUnmountInMs
+                      </div>
+                      <div className='TableBody__cell'>
+                        Number
+                      </div>
+                      <div className='TableBody__cell'>
+                        0
+                      </div>
+                      <div className='TableBody__cell'>
+                        Delay in milliseconds until the modal should get closed
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        onBeforeShow
+                      </div>
+                      <div className='TableBody__cell'>
+                        Function
+                      </div>
+                      <div className='TableBody__cell'>
+                        () => {`{}`}
+                      </div>
+                      <div className='TableBody__cell'>
+                        Callback which will be invoked before modal is shown
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        onAfterShow
+                      </div>
+                      <div className='TableBody__cell'>
+                        Function
+                      </div>
+                      <div className='TableBody__cell'>
+                        () => {`{}`}
+                      </div>
+                      <div className='TableBody__cell'>
+                        Callback which will be invoked after modal is shown
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        onBeforeClose
+                      </div>
+                      <div className='TableBody__cell'>
+                        Function
+                      </div>
+                      <div className='TableBody__cell'>
+                        () => {`{}`}
+                      </div>
+                      <div className='TableBody__cell'>
+                        Callback which will be invoked before modal is closed
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        onAfterClose
+                      </div>
+                      <div className='TableBody__cell'>
+                        Function
+                      </div>
+                      <div className='TableBody__cell'>
+                        () => {`{}`}
+                      </div>
+                      <div className='TableBody__cell'>
+                        Callback which will be invoked after modal is closed
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </Section>
             <Section
-              id='accessibility'
-              title='Accessibility'
-              emoji='♿️'
+              id='examples'
+              title='Examples'
+              titleClassName='Section__title  Section__title--large'
+              emoji='💡'
               Text={() =>
                 <>
-                  As defined in the <a href='https://www.w3.org/TR/wai-aria-practices/#dialog_modal' target='blank'>W3C Dialog Specification</a>, the focus should move to an element within the opened modal. That said, you will need, in all circumstances, to place a tabbable element inside of the modal. Typically this could be a button which closes the modal again.
+                  Below you can find some examples. For the sake of straightforwardness I have stripped out a few unnecessary lines
+                  but if you want you can find the complete source code (more examples as well) <a target='blank' href='https://github.com/pixelmanya/react-a11y-modal/tree/master/example/src/components/Examples'>right here</a>.
                 </>
               }
             />
-            <Section
-              id='styling'
-              title='Styling'
-              emoji='💅'
-              Text={() =>
-                <>
-                  For the sake of simplicity react-a11y-modal ships with a basic CSS layout which you can easily extend or get rid of if you want to.
-                  However, if you want to have full control of styling, you can do that. Either pass a custom <code className='CodeHighlight'>namespace</code> as a prop and add your own styles and/or pass an empty <code className='CodeHighlight'>styles</code> prop.
-                </>
-              }
-            >
-              <blockquote className='Hint'>
-                <strong>Did you know?</strong><span role='image'>☝️</span><br />
-                If you pass all of the (optional) skeleton components <code className='CodeHighlight'>{`<Modal.Header />`}</code>, <code className='CodeHighlight'>{`<Modal.Body />`}</code> and <code className='CodeHighlight'>{`<Modal.Footer />`}</code> we will make the Header and the Footer sticky, the Body will be scrollable out of the box. <a href='#with-header-body-and-footer'>Check the demo.</a>
-              </blockquote>
-            </Section>
             { state && state.map(({
               name,
               label,
               text,
               code,
+              codeLink,
               value,
               Component
             }) => {
@@ -255,22 +494,57 @@ import { Modal } from 'react-a11y-modal'
                     onClick={() => setState(true)}
                     className='ExampleButton'
                   >
-                    Let's see!
+                    Let me see!
                   </button>
-                  { code && (
+                  { codeLink &&
+                    <a
+                      href={codeLink}
+                      target='blank'
+                      className='ExampleLink'
+                    >
+                      View code on Github.
+                    </a>
+                  }
+                  { code &&
                     <Highlighter>
                       { code }
                     </Highlighter>
-                  ) }
+                  }
                   { value && Component &&
-                  <Component
-                    mountTo={modalContainerRef.current}
-                    onAfterClose={() => setState(false)}
-                  />
+                    <Component
+                      mountTo={modalContainerRef.current}
+                      onAfterClose={() => setState(false)}
+                    />
                   }
                 </Section>
               )
             }) }
+            <Section
+              id='styling'
+              title='Styling'
+              emoji='💅'
+              Text={() =>
+                <>
+                  For the sake of simplicity react-a11y-modal comes with a basic CSS layout which you can easily extend or get rid of if you want to.
+                  However, if you want to have full control of styling, you can do that. Either pass a custom <code className='CodeHighlight'>namespace</code> as a prop and add your own styles and/or pass an empty <code className='CodeHighlight'>styles</code> prop.
+                </>
+              }
+            >
+              <blockquote className='Hint'>
+                <strong>Did you know?</strong><span role='image'>☝️</span><br />
+                If you pass all of the (optional) child components <code className='CodeHighlight'>{`<Modal.Header />`}</code>, <code className='CodeHighlight'>{`<Modal.Body />`}</code> and <code className='CodeHighlight'>{`<Modal.Footer />`}</code> then the Header and Footer will be sticky and the Body will be scrollable by default. <a href='#with-header-body-and-footer'>Check the demo.</a>
+              </blockquote>
+            </Section>
+            <Section
+              id='accessibility'
+              title='Accessibility'
+              emoji='♿️'
+              Text={() =>
+                <>
+                  As defined in the <a href='https://www.w3.org/TR/wai-aria-practices/#dialog_modal' target='blank'>W3C Dialog Specification</a>, the focus should move to an element within the opened modal. That said, you will need, in all circumstances, to place a tabbable element inside of the modal. Typically this could be a button which closes the modal again.
+                </>
+              }
+            />
           </div>
         </main>
         <footer className='Footer'>
