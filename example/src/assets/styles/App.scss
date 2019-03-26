@@ -291,6 +291,22 @@ html,
   }
 }
 
+.Link {
+  $red: #9b59b6;
+
+  cursor: pointer;
+  color: $red;
+  text-decoration: none;
+  padding: 0.1875rem 0;
+  border-bottom: 1px solid rgba($red, .5);
+  border-radius: 2px 2px 0 0;
+
+  &:hover {
+    background: rgba($red, .1);
+    border-bottom-color: $red;
+  }
+}
+
 .Content {
   position: relative;
   grid-area: content;
@@ -311,19 +327,8 @@ html,
     transform: translateX(15.625rem);
   }
 
-  $red: #9b59b6;
-
   a {
-    color: $red;
-    text-decoration: none;
-    padding: 0.1875rem 0;
-    border-bottom: 1px solid rgba($red, .5);
-    border-radius: 2px 2px 0 0;
-
-    &:hover {
-      background: rgba($red, .1);
-      border-bottom-color: $red;
-    }
+    @extend .Link;
   }
 }
 
@@ -446,6 +451,8 @@ button:active {
   display: inline-block;
   padding: get-rem(3px);
   margin: get-rem(1x) 0;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: .8125rem;
   background: rgba(#34495e, .1);
   border-radius: 3px;
 }

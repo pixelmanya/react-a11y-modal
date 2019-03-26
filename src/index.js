@@ -150,35 +150,28 @@ function Container({
     }
   })
 
-  // effect for shouldCloseOnEscClick
-  useEffect(() => {
-    const onKeyDown = e => {
-      if (
-        state.isOpen &&
-        (e.key === 'Escape' || e.key === 'Esc')
-      ) {
-        e.preventDefault()
+  // handle key down (escape)
+  const handleKeyDown = e => {
+    if (
+      state.isOpen &&
+      (e.key === 'Escape' || e.key === 'Esc')
+    ) {
+      e.preventDefault()
+      e.stopPropagation()
 
-        if (state.onEscClick) {
-          state.onEscClick(e)
-        }
+      if (state.onEscClick) {
+        state.onEscClick(e)
+      }
 
-        if (state.shouldCloseOnEscClick) {
-          if (state.onClose) {
-            state.onClose()
-          } else {
-            actions.close()
-          }
+      if (state.shouldCloseOnEscClick) {
+        if (state.onClose) {
+          state.onClose()
+        } else {
+          actions.close()
         }
       }
     }
-
-    document.addEventListener('keydown', onKeyDown)
-
-    return () => {
-      document.removeEventListener('keydown', onKeyDown)
-    }
-  })
+  }
 
   // effect for refs
   useEffect(() => {
@@ -226,7 +219,11 @@ function Container({
   // for render
   let Wrapper =
     <FocusTrap>
-      <div className={state.namespace}>
+      <div
+        className={state.namespace}
+        tabIndex='-1'
+        onKeyDown={handleKeyDown}
+      >
         {
           getCreateElementFn('backdrop')(state.backdropTagName, {
             key: 1,

@@ -3,4 +3,5 @@ export { default as AcceptTermsAndConditionsModal } from './AcceptTermsAndCondit
 export { ConfirmationModal, AnimatedConfirmationModal } from './ConfirmationModal'
 export { default as HeaderAndFooterModal } from './HeaderAndFooterModal'
 export { default as FormModal } from './FormModal'
+export { default as NestedModal } from './NestedModal'
 export { default as Definition } from './Definition'
