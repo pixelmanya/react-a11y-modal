@@ -108,9 +108,8 @@ $ yarn add react-a11y-modal
               id='usage'
               title='Usage'
               emoji='🤔'
-              Text='All props are entirely optional. However you can find a detailed overview below:'
+              Text='This is the very basic setup.'
             >
-              <h3 className='Section__subtitle' />
               <Highlighter>
                 {`
 import { Modal } from 'react-a11y-modal'
@@ -155,9 +154,13 @@ export default () =>
 // </div>
                 `}
               </Highlighter>
-              <h3 className='Section__subtitle'>
-                Props
-              </h3>
+            </Section>
+            <Section
+              id='props'
+              title='Props'
+              emoji='🤓'
+              Text='All props are entirely optional. However you can find a detailed overview below:'
+            >
               <div className='TableWrapper'>
                 <div className='Table'>
                   <div className='TableHead'>
@@ -487,7 +490,7 @@ export default () =>
                   id={name}
                   title={label}
                   Text={text}
-                  emoji='👈 👀'
+                  emoji='👀 👈'
                   key={name}
                 >
                   <button

@@ -3,9 +3,11 @@ import { Modal } from 'react-a11y-modal'
 import { ReactComponent as Close } from '../../assets/icons/close.svg'
 
 const OtherModal = ({
-  onClose
+  onClose,
+  mountTo
 }) =>
   <Modal.Container
+    mountTo={mountTo}
     className='BasicModal'
   >
     <Modal.Body>
@@ -19,13 +21,12 @@ const OtherModal = ({
         <Close className='ConfirmationModalClose__icon' />
       </button>
       <p>
-        You made it! If you are curious just click on <span className='CodeHighlight'>esc</span> key and you'll see that
-        this modal closes before the underlying one. ☝
+        Great! Now click the <span className='CodeHighlight'>esc</span> key.
       </p>
     </Modal.Body>
   </Modal.Container>
 
-const Nested = ({
+const NestedModal = ({
   mountTo,
   onAfterClose
 }) => {
@@ -64,4 +65,4 @@ const Nested = ({
   )
 }
 
-export default Nested
+export default NestedModal

@@ -17,6 +17,10 @@ const NavItems = [
       {
         href: 'usage',
         label: 'Usage'
+      },
+      {
+        href: 'props',
+        label: 'Props'
       }
     ]
   },
