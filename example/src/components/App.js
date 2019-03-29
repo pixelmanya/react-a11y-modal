@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-import { Definition as Examples } from './Examples';
+import Examples from './ExamplesDefinition';
 import Navigation from './Navigation';
 import Section from './Section';
 import Highlighter from './Highlighter';
@@ -82,7 +82,9 @@ function App() {
             <Section id="introduction">
               <blockquote className="Introduction">
                 <strong>Welcome!</strong>
-                <span role="image">👋</span>
+                <span role="img" aria-label="Waving hand">
+                  👋
+                </span>
                 <br />
                 This <a href="#accessibility">accessible</a> modal (dialog) for{' '}
                 <a href="https://reactjs.org" target="blank">
@@ -109,7 +111,7 @@ function App() {
               id="installation"
               title="Installation"
               emoji="⚒"
-              Text="To install the latest stable version use npm or yarn."
+              text="To install the latest stable version use npm or yarn."
             >
               <Highlighter language="bash">
                 {`
@@ -122,7 +124,7 @@ $ yarn add react-a11y-modal
               id="usage"
               title="Usage"
               emoji="🤔"
-              Text="This is the very basic setup."
+              text="This is the very basic setup."
             >
               <Highlighter>
                 {`
@@ -170,7 +172,9 @@ export default () =>
               </Highlighter>
               <blockquote className="Hint">
                 <strong>Oh, by the way</strong>
-                <span role="image">☝️</span>
+                <span role="img" aria-label="Check it out">
+                  ☝️
+                </span>
                 <br />
                 If you pass all of the child components{' '}
                 <code className="CodeHighlight">{`<Modal.Header />`}</code>,{' '}
@@ -187,7 +191,7 @@ export default () =>
               id="props"
               title="Props"
               emoji="🤓"
-              Text="All props are entirely optional. However you can find a detailed overview below:"
+              text="All props are entirely optional. However you can find a detailed overview below:"
             >
               <div className="TableWrapper">
                 <div className="Table">
@@ -466,7 +470,7 @@ export default () =>
               id="license"
               title="License"
               emoji="🔓"
-              Text={() => (
+              text={
                 <>
                   The{' '}
                   <a
@@ -477,14 +481,14 @@ export default () =>
                   </a>
                   . That said, please feel free to contribute!
                 </>
-              )}
+              }
             />
             <Section
               id="examples"
               title="Examples"
               titleClassName="Section__title  Section__title--large"
               emoji="💡"
-              Text={() => (
+              text={
                 <>
                   Below you can find some examples. For the sake of
                   straightforwardness I have stripped out a few unnecessary
@@ -498,7 +502,7 @@ export default () =>
                   </a>
                   .
                 </>
-              )}
+              }
             />
             {state &&
               state.map(
@@ -509,7 +513,7 @@ export default () =>
                     <Section
                       id={name}
                       title={label}
-                      Text={text}
+                      text={text}
                       emoji="👀 👈"
                       key={name}
                     >
@@ -540,7 +544,7 @@ export default () =>
               id="styling"
               title="Styling"
               emoji="💅"
-              Text={() => (
+              text={
                 <>
                   For the sake of simplicity react-a11y-modal comes with a basic
                   CSS layout which you can easily extend or get rid of if you
@@ -550,13 +554,13 @@ export default () =>
                   add your own styles and/or pass an empty{' '}
                   <code className="CodeHighlight">styles</code> prop.
                 </>
-              )}
+              }
             />
             <Section
               id="accessibility"
               title="Accessibility"
               emoji="♿️"
-              Text={() => (
+              text={
                 <>
                   As defined in the{' '}
                   <a
@@ -570,7 +574,7 @@ export default () =>
                   tabbable element inside of the modal. Typically this could be
                   a button which closes the modal again. Or any kind of button.
                 </>
-              )}
+              }
             >
               <blockquote className="Attention">
                 <strong>Heads up!</strong>
@@ -586,7 +590,11 @@ export default () =>
         <footer className="Footer">
           <span className="info">v1.0.5 ~ last published on 2019/03/11</span>
           <p className="credits">
-            Handcrafted with <span role="img">❤️</span> by{' '}
+            Handcrafted with{' '}
+            <span role="img" aria-label="Love">
+              ❤️
+            </span>{' '}
+            by{' '}
             <a href="http://pixelmanya.com" target="blank">
               Dominik Mertz
             </a>{' '}

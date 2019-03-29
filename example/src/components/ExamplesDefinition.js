@@ -6,7 +6,7 @@ import {
   HeaderAndFooterModal,
   NestedModal,
   FormModal
-} from '.';
+} from './Examples';
 
 const Examples = [
   {
@@ -44,12 +44,12 @@ const BasicModal = () =>
   {
     name: 'with-header-body-and-footer',
     label: 'Header, Body and Footer',
-    text: () => (
-      <p>
+    text: (
+      <>
         This example shows a modal with a Header, Body and Footer. You can
         either make use of the default styling or adjust the{' '}
         <a href="#styling">look and feel like you desire</a>.
-      </p>
+      </>
     ),
     value: false,
     Component: HeaderAndFooterModal,

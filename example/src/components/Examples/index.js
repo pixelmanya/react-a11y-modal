@@ -10,4 +10,3 @@ export {
 export { default as HeaderAndFooterModal } from './HeaderAndFooterModal';
 export { default as FormModal } from './FormModal';
 export { default as NestedModal } from './NestedModal';
-export { default as Definition } from './Definition';

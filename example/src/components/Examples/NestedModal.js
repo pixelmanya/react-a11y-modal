@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from 'react-a11y-modal';
 import { ReactComponent as Close } from '../../assets/icons/close.svg';
 
-const OtherModal = ({ onClose, mountTo, onAfterClose = { onAfterClose } }) => (
+const OtherModal = ({ onClose, mountTo, onAfterClose }) => (
   <Modal.Container
     className="BasicModal"
     mountTo={mountTo}
@@ -38,9 +38,9 @@ const NestedModal = ({ onAfterClose }) => {
               You just have to see the modal on top of this one!
               <br />
               Just{' '}
-              <a onClick={toggleModal} className="Link">
+              <span onClick={toggleModal} className="Link">
                 click this link
-              </a>{' '}
+              </span>{' '}
               to let it appear.
             </p>
             {showModal && (

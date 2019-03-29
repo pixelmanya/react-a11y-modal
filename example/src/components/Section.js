@@ -6,7 +6,7 @@ const Section = ({
   title,
   titleClassName = 'Section__title',
   emoji,
-  Text,
+  text,
   children
 }) => (
   <section id={id} className="Section">
@@ -20,12 +20,7 @@ const Section = ({
         )}
       </h2>
     )}
-    {Text && (
-      <p className="Section__text">
-        {typeof Text === 'string' ? Text : <Text />}
-      </p>
-    )}
-
+    <p className="Section__text">{text}</p>
     {children}
   </section>
 );
@@ -34,7 +29,7 @@ Section.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
   emoji: PropTypes.string,
-  Text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node

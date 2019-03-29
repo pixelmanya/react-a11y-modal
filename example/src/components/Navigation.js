@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Definition as Examples } from './Examples';
+import Examples from './ExamplesDefinition';
 
 const NavItems = [
   {
@@ -119,23 +119,17 @@ const Navigation = ({ navRef }) => {
         const currentRatio = entry.intersectionRatio;
         const isIntersecting = entry.isIntersecting;
         const Section = entry.target;
-        let direction;
         const { previousY = 0, previousRatio = 0 } =
           previousMap[Section.id] || {};
 
         // Scrolling down/up
         if (currentY < previousY) {
           if (currentRatio > previousRatio && isIntersecting) {
-            direction = 'Scrolling down enter';
             visible = Section;
-          } else {
-            direction = 'Scrolling down leave';
           }
         } else if (currentY > previousY && isIntersecting) {
           if (currentRatio < previousRatio) {
-            direction = 'Scrolling up leave';
           } else {
-            direction = 'Scrolling up enter';
             visible = Section;
           }
         }
@@ -152,6 +146,8 @@ const Navigation = ({ navRef }) => {
         if (link) {
           link.classList.remove(activeClassName);
         }
+
+        return item;
       });
 
       if (visible) {
@@ -179,14 +175,14 @@ const Navigation = ({ navRef }) => {
 
   return (
     <>
-      <a
+      <span
         onClick={() => document.body.classList.toggle('navigation-is-visible')}
         className="NavigationSwitch"
       >
         <span className="NavigationSwitch__line" />
         <span className="NavigationSwitch__line" />
         <span className="NavigationSwitch__line" />
-      </a>
+      </span>
       <nav ref={navRef} className="Navigation">
         <NavTree />
       </nav>
