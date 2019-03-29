@@ -3,12 +3,12 @@ import { Definition as Examples } from './Examples'
 
 const NavItems = [
   {
-    href: false,
+    href: 'start',
     label: 'Getting started',
     children: [
       {
-        href: 'foreword',
-        label: 'Foreword'
+        href: 'introduction',
+        label: 'Introduction'
       },
       {
         href: 'installation',
@@ -21,6 +21,10 @@ const NavItems = [
       {
         href: 'props',
         label: 'Props'
+      },
+      {
+        href: 'license',
+        label: 'License'
       }
     ]
   },

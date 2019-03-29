@@ -1,6 +1,6 @@
 import { css } from '@emotion/core'
 
-export const Backdrop = css`
+export const backdrop = css`
   position: fixed;
   left: 0;
   top: 0;
@@ -10,7 +10,7 @@ export const Backdrop = css`
   opacity: .2;
 `
 
-export const Container = ({
+export const container = ({
   hasHeaderBodyAndFooter
 }) => css`
   overflow: hidden;
@@ -55,7 +55,7 @@ export const Container = ({
   ` : ''}
 `
 
-export const Header = css`
+export const header = css`
   border-bottom: 1px solid lightgray;
   padding: 1rem;
 
@@ -65,23 +65,23 @@ export const Header = css`
   }
 `
 
-export const Body = css`
+export const body = css`
   padding: 1rem;
   overflow-y: auto;
   font-size: 1rem;
   line-height: 1.5;
 `
 
-export const Footer = css`
+export const footer = css`
   box-shadow: 0 5px 30px rgba(0, 0, 0, .4);
   padding: 1rem;
   text-align: right;
 `
 
 export default {
-  Backdrop,
-  Container,
-  Header,
-  Body,
-  Footer
+  backdrop,
+  container,
+  header,
+  body,
+  footer
 }

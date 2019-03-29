@@ -29,7 +29,6 @@ function App () {
 
     return setState(newState)
   }
-  const modalContainerRef = useRef(null)
   const navRef = useRef(null)
   const bodyClassList = document.body.classList
 
@@ -80,15 +79,17 @@ function App () {
             />
           </div>
           <div className='Content__wrapper'>
-            <h1 className='Title'>react-a11y-modal</h1>
+            <h1 id='start' className='Title'>react-a11y-modal</h1>
             <Section
-              id='foreword'
+              id='introduction'
             >
               <blockquote className='Introduction'>
-                <strong>Foreword</strong><span role='image'>👋</span><br />
-                This accessible modal dialog for <a href='https://reactjs.org' target='blank'>React</a> was mainly built because I wanted to learn the recently
+                <strong>Welcome!</strong><span role='image'>👋</span><br />
+                This <a href='#accessibility'>accessible</a> modal (dialog) for <a href='https://reactjs.org' target='blank'>React</a> was mainly built because I wanted to learn the recently
                 introduced <a href='https://reactjs.org/docs/hooks-intro.html' target='blank'>React Hooks</a>. Furthermore I wanted to provide developers a decent-looking modal which they could use right away
                 without worrying much about styling and stuff.
+                <br /><br />
+                Enough talk! <a href='#examples'>Click here</a> if you want to jump straight to the examples section.
               </blockquote>
             </Section>
             <Section
@@ -154,6 +155,11 @@ export default () =>
 // </div>
                 `}
               </Highlighter>
+              <blockquote className='Hint'>
+                <strong>Oh, by the way</strong><span role='image'>☝️</span><br />
+                If you pass all of the child components <code className='CodeHighlight'>{`<Modal.Header />`}</code>, <code className='CodeHighlight'>{`<Modal.Body />`}</code> and <code className='CodeHighlight'>{`<Modal.Footer />`}</code> then the Header and Footer will be sticky and the Body will be scrollable by default.
+                <br /><br /><a href='#with-header-body-and-footer'>Check the demo.</a>
+              </blockquote>
             </Section>
             <Section
               id='props'
@@ -302,6 +308,62 @@ export default () =>
                       </div>
                       <div className='TableBody__cell'>
                         DOM Element which will be used as the modals root (see <a href='https://reactjs.org/docs/portals.html' target='blank'>React Portal</a>)
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        ariaAppRoot
+                      </div>
+                      <div className='TableBody__cell'>
+                        DOM Element
+                      </div>
+                      <div className='TableBody__cell'>
+                        -
+                      </div>
+                      <div className='TableBody__cell'>
+                        This element will receive <span className="CodeHighlight">aria-hidden="true"</span> when the modal is shown. It's helpful for screenreaders to understand what's going on. <a href='https://www.w3.org/TR/wai-aria-1.1/#aria-hidden' target='blank'>Learn more</a>
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        ariaLabelledBy
+                      </div>
+                      <div className='TableBody__cell'>
+                        String
+                      </div>
+                      <div className='TableBody__cell'>
+                        -
+                      </div>
+                      <div className='TableBody__cell'>
+                        The id of the element that should be used as the modal's accessible title. You cannot use this in combination with <span className="CodeHighlight">ariaLabel</span>! <a href='https://www.w3.org/TR/wai-aria-1.1/#aria-labelledby' target='blank'>Learn more</a>
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        ariaLabel
+                      </div>
+                      <div className='TableBody__cell'>
+                        String
+                      </div>
+                      <div className='TableBody__cell'>
+                        -
+                      </div>
+                      <div className='TableBody__cell'>
+                        The title of your modal if you don't have one which is visible (on the screen). You cannot use this in combination with <span className="CodeHighlight">ariaLabelledBy</span>! <a href='https://www.w3.org/TR/wai-aria-1.1/#aria-label' target='blank'>Learn more</a>
+                      </div>
+                    </div>
+                    <div className='TableBody__row'>
+                      <div className='TableBody__cell'>
+                        ariaDescribedBy
+                      </div>
+                      <div className='TableBody__cell'>
+                        String
+                      </div>
+                      <div className='TableBody__cell'>
+                        -
+                      </div>
+                      <div className='TableBody__cell'>
+                        Gives the dialog an accessible description by referring to the dialog content that describes the primary message or purpose of the dialog. <a href='https://www.w3.org/TR/wai-aria-1.1/#aria-describedby' target='blank'>Learn more</a>
                       </div>
                     </div>
                     <div className='TableBody__row'>
@@ -463,6 +525,12 @@ export default () =>
               </div>
             </Section>
             <Section
+              id='license'
+              title='License'
+              emoji='🔓'
+              Text={() => <>The <a href='https://en.wikipedia.org/wiki/MIT_License' target='blank'>MIT License</a>. That said, please feel free to contribute!</>}
+            />
+            <Section
               id='examples'
               title='Examples'
               titleClassName='Section__title  Section__title--large'
@@ -515,7 +583,6 @@ export default () =>
                   }
                   { value && Component &&
                     <Component
-                      mountTo={modalContainerRef.current}
                       onAfterClose={() => setState(false)}
                     />
                   }
@@ -532,12 +599,7 @@ export default () =>
                   However, if you want to have full control of styling, you can do that. Either pass a custom <code className='CodeHighlight'>namespace</code> as a prop and add your own styles and/or pass an empty <code className='CodeHighlight'>styles</code> prop.
                 </>
               }
-            >
-              <blockquote className='Hint'>
-                <strong>Did you know?</strong><span role='image'>☝️</span><br />
-                If you pass all of the (optional) child components <code className='CodeHighlight'>{`<Modal.Header />`}</code>, <code className='CodeHighlight'>{`<Modal.Body />`}</code> and <code className='CodeHighlight'>{`<Modal.Footer />`}</code> then the Header and Footer will be sticky and the Body will be scrollable by default. <a href='#with-header-body-and-footer'>Check the demo.</a>
-              </blockquote>
-            </Section>
+            />
             <Section
               id='accessibility'
               title='Accessibility'
@@ -545,9 +607,15 @@ export default () =>
               Text={() =>
                 <>
                   As defined in the <a href='https://www.w3.org/TR/wai-aria-practices/#dialog_modal' target='blank'>W3C Dialog Specification</a>, the focus should move to an element within the opened modal. That said, you will need, in all circumstances, to place a tabbable element inside of the modal. Typically this could be a button which closes the modal again.
+                  Or any kind of button.
                 </>
               }
-            />
+            >
+              <blockquote className='Attention'>
+                <strong>Heads up!</strong><br />
+                If you don't follow the spec. mentioned above react-a11y-modal will throw an exception and don't render at all. Keep in mind that this is just about accessibility and I really care about your users!
+              </blockquote>
+            </Section>
           </div>
         </main>
         <footer className='Footer'>
@@ -559,7 +627,6 @@ export default () =>
           </p>
         </footer>
       </div>
-      <div className='AppModalContainer' ref={modalContainerRef} />
     </>
   )
 }

@@ -17,7 +17,6 @@ const formState = [{
 }]
 
 const FormModal = ({
-  mountTo,
   onAfterClose
 }) => withModal(() => {
   const [fields, setFormFields] = useState(formState)
@@ -99,12 +98,17 @@ const FormModal = ({
     </>
   )
 }, {
-  mountTo,
   className: {
     'Modal--form': true
   },
   styles: {
     backdrop: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      background: 'rgba(0,0,0,.3)',
       opacity: 0,
       transition: 'all .2s ease'
     },

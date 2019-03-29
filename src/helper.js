@@ -3,6 +3,7 @@
 import React, { useContext, useRef } from 'react'
 import { jsx } from '@emotion/core'
 import styles from './styles'
+import get from 'lodash/get'
 import { ModalContext } from './context'
 
 export const createElement =
@@ -14,15 +15,12 @@ export const createElement =
     const { state, actions } = useContext(ModalContext)
     const ref = useRef(null)
     const prop = type.toLowerCase()
-    const hasStyles = actions.hasStyles(prop)
-    const createElementFn = hasStyles ? React.createElement : jsx
 
-    return createElementFn(
+    return jsx(
       tagName,
       {
         className: `${state.namespace}${type}`,
-        style: state.styles && state.styles[prop] ? state.styles[prop] : undefined,
-        css: !hasStyles && state.styles !== false ? styles[type] : undefined,
+        css: actions.getStyle(prop),
         ref: node => {
           ref.current = node
 

@@ -2,17 +2,17 @@ import React from 'react'
 import { Modal } from 'react-a11y-modal'
 import { ReactComponent as Close } from '../../assets/icons/close.svg'
 
-const BasicModal = ({
+const UnstyledModal = ({
   onAfterClose
 }) => (
   <Modal.Container
-    className='BasicModal'
+    styles={null}
     onAfterClose={onAfterClose}
   >
     { ({ actions }) =>
-      <Modal.Body id="my-dialog">
-        <h1 id="modal-aria-title" className='ModalHeader__title'>
-          Basic Modal
+      <Modal.Body>
+        <h1 className='ModalHeader__title'>
+          Unstyled Modal
         </h1>
         <button
           onClick={actions.close}
@@ -21,12 +21,11 @@ const BasicModal = ({
           <Close className='ConfirmationModalClose__icon' />
         </button>
         <p>
-          This is a very basic modal. You don't even need <code className='CodeHighlight'>{`<Modal.Body />`}</code> here and
-          could rather add some custom elements, but it's good to have something in place for you.
+          This modal has literally no style. You just need to pass a falsy value for <span className='CodeHighlight'>styles</span> and it's all yours.
         </p>
       </Modal.Body>
     }
   </Modal.Container>
 )
 
-export default BasicModal
+export default UnstyledModal

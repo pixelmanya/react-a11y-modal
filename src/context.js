@@ -1,6 +1,9 @@
 import React, { useReducer, useEffect } from 'react'
 import pick from 'lodash/pick'
 import merge from 'lodash/merge'
+import get from 'lodash/get'
+
+import styles from './styles'
 import { defaultProps } from './index'
 import { applyStyles } from './helper'
 
@@ -39,7 +42,26 @@ function ModalContextProvider({
     initialState,
     pick(children.props, Object.keys(initialState))
   ))
-  const hasStyles = property => state && state.styles && state.styles[property] && Object.keys(state.styles[property]).length
+  const getStyle = (prop, args = {}) => {
+    const rules = get(state, `styles.${prop}`, {})
+
+    if (Object.keys(rules).length) {
+      return rules
+    } else if (
+      !!state.styles !== false &&
+      styles[prop.toLowerCase()]
+    ) {
+      const res = styles[prop.toLowerCase()]
+
+      if (typeof res === 'function') {
+        return res(args)
+      }
+
+      return res
+    }
+
+    return undefined
+  }
   const actions = {
     show: () => {
       dispatch({ type: 'show' })
@@ -49,7 +71,7 @@ function ModalContextProvider({
 
       let styles = {}
 
-      if (hasStyles('backdropBeforeUnmount')) {
+      if (getStyle('backdropBeforeUnmount')) {
         styles = {
           ...styles,
           backdrop: {
@@ -59,7 +81,7 @@ function ModalContextProvider({
         }
       }
 
-      if (hasStyles('containerBeforeUnmount')) {
+      if (getStyle('containerBeforeUnmount')) {
         styles = {
           ...styles,
           container: {
@@ -85,7 +107,7 @@ function ModalContextProvider({
         payload
       })
     },
-    hasStyles
+    getStyle
   }
   const value = { state, dispatch, actions }
 

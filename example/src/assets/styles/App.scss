@@ -333,7 +333,7 @@ html,
 }
 
 .SocialButtons {
-  position: absolute;
+  position: fixed;
   right: 2rem;
   top: 1rem;
 
@@ -371,8 +371,7 @@ html,
 .Title {
   font-size: 2.5rem;
   font-weight: bold;
-  margin: 1rem 0 0 0;
-  padding-top: 3rem;
+  padding-top: 4rem;
   background: -webkit-linear-gradient(45deg, #9b59b6, #2980b9);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -445,6 +444,14 @@ button:active {
   font-size: 1rem;
   background: rgba(#f1c40f, .3);
   border-color: #f1c40f;
+}
+
+.Attention {
+  @extend %blockquote;
+
+  font-size: 1rem;
+  background: rgba(#e74c3c, .3);
+  border-color: #e74c3c;
 }
 
 .CodeHighlight {

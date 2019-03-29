@@ -1,5 +1,7 @@
+import React from 'react'
 import {
   BasicModal,
+  UnstyledModal,
   ConfirmationModal,
   HeaderAndFooterModal,
   NestedModal,
@@ -11,7 +13,7 @@ const Examples = [
     name: 'basic-modal',
     label: 'Basic Modal',
     text: `
-      A very basic modal.
+      A very basic modal. Nothing more to say.
     `,
     codeLink: 'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/BasicModal.js',
     code: `
@@ -41,6 +43,11 @@ const BasicModal = () =>
   {
     name: 'with-header-body-and-footer',
     label: 'Header, Body and Footer',
+    text: () =>
+      <p>
+        This example shows a modal with a Header, Body and Footer. You can either make use of the default styling
+        or adjust the <a href='#styling'>look and feel like you desire</a>.
+      </p>,
     value: false,
     Component: HeaderAndFooterModal,
     codeLink: 'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/HeaderAndFooterModal.js',
@@ -82,6 +89,37 @@ const ModalWithHeaderAndFooter = () =>
     ) }
   </Modal.Container>
     `
+  },
+  {
+    name: 'unstyled-modal',
+    label: 'Unstyled Modal',
+    text: `
+      A pretty naked modal, responsibility is all yours.
+    `,
+    codeLink: 'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/UnstyledModal.js',
+    code: `
+import React from 'react'
+import { Modal } from 'react-a11y-modal'
+
+const UnstyledModal = () =>
+  <Modal.Container styles={null} >
+    { ({ actions }) =>
+      <Modal.Body>
+        <h1>
+          Basic Modal
+        </h1>
+        <button onClick={actions.close}>
+          <Close />
+        </button>
+        <p>
+          This is a very basic modal…
+        </p>
+      </Modal.Body>
+    }
+  </Modal.Container>
+    `,
+    value: false,
+    Component: UnstyledModal
   },
   {
     name: 'nested-modal',

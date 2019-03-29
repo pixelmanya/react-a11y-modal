@@ -2,11 +2,9 @@ import React from 'react'
 import { Modal } from 'react-a11y-modal'
 
 const ModalWithHeaderAndFooter = ({
-  onAfterClose = () => {},
-  mountTo
+  onAfterClose = () => {}
 }) =>
   <Modal.Container
-    mountTo={mountTo}
     onAfterClose={onAfterClose}
   >
     { ({ actions }) => (

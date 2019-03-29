@@ -7,12 +7,10 @@ import '../../assets/styles/examples/ConfirmationModal.scss'
 
 export const ConfirmationModal = ({
   onAfterClose,
-  onClose,
-  mountTo
+  onClose
 }) => {
   return (
     <Modal.Container
-      mountTo={mountTo}
       onAfterClose={!onClose ? onAfterClose : () => {}}
       onClose={onClose}
       className={{

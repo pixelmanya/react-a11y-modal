@@ -4,11 +4,13 @@ import { ReactComponent as Close } from '../../assets/icons/close.svg'
 
 const OtherModal = ({
   onClose,
-  mountTo
+  mountTo,
+  onAfterClose={onAfterClose}
 }) =>
   <Modal.Container
-    mountTo={mountTo}
     className='BasicModal'
+    mountTo={mountTo}
+    onAfterClose={onAfterClose}
   >
     <Modal.Body>
       <h1 className='ModalHeader__title'>
@@ -27,17 +29,15 @@ const OtherModal = ({
   </Modal.Container>
 
 const NestedModal = ({
-  mountTo,
   onAfterClose
 }) => {
   const [showModal, setShowModal] = useState(false)
 
-  const toggleModalOnClick = () => setShowModal(!showModal)
+  const toggleModal = () => setShowModal(!showModal)
 
   return (
     <Modal.Container
       className='BasicModal'
-      mountTo={mountTo}
       onAfterClose={onAfterClose}
     >
       { ({ actions }) =>
@@ -55,9 +55,12 @@ const NestedModal = ({
             <p>
               You just have to see the modal on top of this one!
               <br />
-              Just <a onClick={toggleModalOnClick} className='Link'>click this link</a> to let it appear.
+              Just <a onClick={toggleModal} className='Link'>click this link</a> to let it appear.
             </p>
-            { showModal && <OtherModal mountTo={mountTo} onClose={toggleModalOnClick} /> }
+            { showModal && <OtherModal
+              onClose={toggleModal}
+              onAfterClose={toggleModal}
+            /> }
           </Modal.Body>
         </>
       }

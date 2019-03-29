@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Modal } from 'react-a11y-modal'
 
 export default function AcceptTermsAndConditionsModal ({
-  mountTo,
   onAfterClose = () => {}
 }) {
   let bodyRef
@@ -27,7 +26,6 @@ export default function AcceptTermsAndConditionsModal ({
 
   return (
     <Modal.Container
-      mountTo={ mountTo }
       shouldCloseOnBackdropClick={ false }
       shouldCloseOnEscClick={ false }
       refs={{
