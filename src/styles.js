@@ -1,4 +1,4 @@
-import { css } from '@emotion/core'
+import { css } from '@emotion/core';
 
 export const backdrop = css`
   position: fixed;
@@ -7,12 +7,10 @@ export const backdrop = css`
   right: 0;
   bottom: 0;
   background-color: lightgray;
-  opacity: .2;
-`
+  opacity: 0.2;
+`;
 
-export const container = ({
-  hasHeaderBodyAndFooter
-}) => css`
+export const container = ({ hasHeaderBodyAndFooter }) => css`
   overflow: hidden;
   position: fixed;
   top: 50%;
@@ -25,13 +23,12 @@ export const container = ({
   border: none;
   width: auto;
   height: auto;
-  box-shadow:
-    0px 11px 15px -7px rgba(0,0,0,0.2),
-    0px 24px 38px 3px rgba(0,0,0,0.14),
-    0px 9px 46px 8px rgba(0,0,0,0.12);
+  box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2),
+    0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
   background: white;
 
-  ${hasHeaderBodyAndFooter ? `
+  ${hasHeaderBodyAndFooter
+    ? `
     top: 50px;
     bottom: 50px;
     left: 50px;
@@ -52,8 +49,9 @@ export const container = ({
       right: 0;
       border-radius: 0;
     }
-  ` : ''}
-`
+  `
+    : ''}
+`;
 
 export const header = css`
   border-bottom: 1px solid lightgray;
@@ -63,20 +61,20 @@ export const header = css`
     font-size: 1.5rem;
     line-height: 2;
   }
-`
+`;
 
 export const body = css`
   padding: 1rem;
   overflow-y: auto;
   font-size: 1rem;
   line-height: 1.5;
-`
+`;
 
 export const footer = css`
-  box-shadow: 0 5px 30px rgba(0, 0, 0, .4);
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
   padding: 1rem;
   text-align: right;
-`
+`;
 
 export default {
   backdrop,
@@ -84,4 +82,4 @@ export default {
   header,
   body,
   footer
-}
+};

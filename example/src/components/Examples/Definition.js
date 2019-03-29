@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   BasicModal,
   UnstyledModal,
@@ -6,7 +6,7 @@ import {
   HeaderAndFooterModal,
   NestedModal,
   FormModal
-} from '.'
+} from '.';
 
 const Examples = [
   {
@@ -15,7 +15,8 @@ const Examples = [
     text: `
       A very basic modal. Nothing more to say.
     `,
-    codeLink: 'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/BasicModal.js',
+    codeLink:
+      'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/BasicModal.js',
     code: `
 import React from 'react'
 import { Modal } from 'react-a11y-modal'
@@ -43,14 +44,17 @@ const BasicModal = () =>
   {
     name: 'with-header-body-and-footer',
     label: 'Header, Body and Footer',
-    text: () =>
+    text: () => (
       <p>
-        This example shows a modal with a Header, Body and Footer. You can either make use of the default styling
-        or adjust the <a href='#styling'>look and feel like you desire</a>.
-      </p>,
+        This example shows a modal with a Header, Body and Footer. You can
+        either make use of the default styling or adjust the{' '}
+        <a href="#styling">look and feel like you desire</a>.
+      </p>
+    ),
     value: false,
     Component: HeaderAndFooterModal,
-    codeLink: 'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/HeaderAndFooterModal.js',
+    codeLink:
+      'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/HeaderAndFooterModal.js',
     code: `
 import React from 'react'
 import { Modal } from 'react-a11y-modal'
@@ -96,7 +100,8 @@ const ModalWithHeaderAndFooter = () =>
     text: `
       A pretty naked modal, responsibility is all yours.
     `,
-    codeLink: 'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/UnstyledModal.js',
+    codeLink:
+      'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/UnstyledModal.js',
     code: `
 import React from 'react'
 import { Modal } from 'react-a11y-modal'
@@ -128,7 +133,8 @@ const UnstyledModal = () =>
       In rare cases you could need to have more than one modal opened at the same time.
       Here you have an example of how it can be done. 😎
     `,
-    codeLink: 'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/NestedModal.js',
+    codeLink:
+      'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/NestedModal.js',
     code: `
 import React, { useState } from 'react'
 import { Modal } from 'react-a11y-modal'
@@ -207,7 +213,8 @@ export default Nested
     text: `
       This example shows a customised Confirmation Modal.
     `,
-    codeLink: 'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/ConfirmationModal.js',
+    codeLink:
+      'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/ConfirmationModal.js',
     code: `
 import React from 'react'
 import { Modal } from 'react-a11y-modal'
@@ -259,7 +266,8 @@ export const ConfirmationModal = () =>
       This example shows a custom Sign-in Modal which utilises custom CSS transition.
     `,
     Component: FormModal,
-    codeLink: 'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/FormModal.js',
+    codeLink:
+      'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/FormModal.js',
     code: `
 import React, { useState } from 'react'
 import { withModal, Modal } from 'react-a11y-modal'
@@ -400,6 +408,6 @@ const FormModal = ({
 export default FormModal
     `
   }
-]
+];
 
-export default Examples
+export default Examples;

@@ -1,24 +1,24 @@
 /** @jsx jsx */
 
-import React, { useEffect, useContext, useRef } from 'react'
-import ReactDOM from 'react-dom'
-import { jsx } from '@emotion/core'
-import FocusTrap from 'focus-trap-react'
-import PropTypes from 'prop-types'
-import classNames from 'classnames'
-import mapKeys from 'lodash/mapKeys'
-import get from 'lodash/get'
+import React, { useEffect, useContext, useRef } from 'react';
+import ReactDOM from 'react-dom';
+import { jsx } from '@emotion/core';
+import FocusTrap from 'focus-trap-react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import mapKeys from 'lodash/mapKeys';
+import get from 'lodash/get';
 import {
   ModalContext as Context,
   ModalContextProvider as Provider,
   ModalContextConsumer as Consumer
-} from './context'
+} from './context';
 import {
   createElement,
   filterAllowedChildren,
   getMapOfChildrenUsed,
   applyStyles
-} from './helper'
+} from './helper';
 
 export const defaultProps = {
   namespace: 'Modal',
@@ -66,62 +66,52 @@ export const defaultProps = {
     body: () => {},
     footer: () => {}
   }
-}
+};
 
 const Modal = {
   Header: createElement('Header'),
   Body: createElement('Body'),
   Footer: createElement('Footer'),
-  Container ({
-    children,
-    ...props
-  }) {
+  Container({ children, ...props }) {
     return (
       <Provider>
-        <Container {...props}>
-          { children }
-        </Container>
+        <Container {...props}>{children}</Container>
       </Provider>
-    )
+    );
   }
-}
+};
 
-function Container({
-  children,
-  mountTo
-}) {
-  const { state, actions } = useContext(Context)
-  const backdropRef = useRef(null)
-  const containerRef = useRef(null)
+function Container({ children, mountTo }) {
+  const { state, actions } = useContext(Context);
+  const backdropRef = useRef(null);
+  const containerRef = useRef(null);
 
   // when we got passed a function as children
   // then lets execute it and pass the actions
-  children = typeof children === 'function'
-    ? children({ actions })
-    : children
+  children = typeof children === 'function' ? children({ actions }) : children;
 
   // check children against blacklisted elements
   // and remove any if necessary
   children = filterAllowedChildren({
     children,
-    blacklist: [ Modal.Container ]
-  })
+    blacklist: [Modal.Container]
+  });
 
   // mapOfChildrenUsed tells us which components
   // have been used => { Header: true, Body: true, Footer: false, ... }
   const mapOfChildrenUsed = getMapOfChildrenUsed({
     children,
     Modal
-  })
+  });
   const hasHeaderBodyAndFooter =
     mapOfChildrenUsed.Header &&
     mapOfChildrenUsed.Body &&
-    mapOfChildrenUsed.Footer
+    mapOfChildrenUsed.Footer;
 
   // effect for applying potential styles
   // to backdrop and container
   useEffect(() => {
-    let styles = {}
+    let styles = {};
 
     if (actions.getStyle('backdropAfterMount')) {
       styles = {
@@ -131,7 +121,7 @@ function Container({
           ...state.styles.backdropAfterMount
         },
         backdropAfterMount: {}
-      }
+      };
     }
 
     if (actions.getStyle('containerAfterMount')) {
@@ -142,7 +132,7 @@ function Container({
           ...state.styles.containerAfterMount
         },
         containerAfterMount: {}
-      }
+      };
     }
 
     if (Object.keys(styles).length) {
@@ -150,119 +140,113 @@ function Container({
         state,
         actions,
         styles
-      })
+      });
     }
-  })
+  });
 
   // handle key down (escape)
   const handleKeyDown = e => {
-    if (
-      state.isOpen &&
-      (e.key === 'Escape' || e.key === 'Esc')
-    ) {
-      e.preventDefault()
-      e.stopPropagation()
+    if (state.isOpen && (e.key === 'Escape' || e.key === 'Esc')) {
+      e.preventDefault();
+      e.stopPropagation();
 
       if (state.onEscClick) {
-        state.onEscClick(e)
+        state.onEscClick(e);
       }
 
       if (state.shouldCloseOnEscClick) {
         if (state.onClose) {
-          state.onClose()
+          state.onClose();
         } else {
-          actions.close()
+          actions.close();
         }
       }
     }
-  }
+  };
 
   // effect for refs
   useEffect(() => {
-    state.refs.backdrop(backdropRef.current)
-    state.refs.container(containerRef.current)
-  })
+    state.refs.backdrop(backdropRef.current);
+    state.refs.container(containerRef.current);
+  });
 
   // effect for adding class to
   // body element
   useEffect(() => {
-    document.body.classList.add(state.classNameWhenOpenend)
+    document.body.classList.add(state.classNameWhenOpenend);
 
-    return () =>
-      document.body.classList.remove(state.classNameWhenOpenend)
-  })
+    return () => document.body.classList.remove(state.classNameWhenOpenend);
+  });
 
   // effect for adding aria-hidden prop to
   // ariaAppRoot element
   useEffect(() => {
     if (state.ariaAppRoot && state.isOpen) {
-      state.ariaAppRoot.setAttribute('aria-hidden', true)
+      state.ariaAppRoot.setAttribute('aria-hidden', true);
     }
 
     return () => {
       if (state.ariaAppRoot && state.isOpen) {
-        state.ariaAppRoot.removeAttribute('aria-hidden')
+        state.ariaAppRoot.removeAttribute('aria-hidden');
       }
-    }
-  })
+    };
+  });
 
   const getClassName = prop => {
-    const defaultClassNames = (additionalProps = {}) => classNames({
-      [state.namespace]: true,
-      ...mapKeys(mapOfChildrenUsed, (value, key) => `${state.namespace}-has-${key.toLowerCase()}`),
-      ...additionalProps
-    })
+    const defaultClassNames = (additionalProps = {}) =>
+      classNames({
+        [state.namespace]: true,
+        ...mapKeys(
+          mapOfChildrenUsed,
+          (value, key) => `${state.namespace}-has-${key.toLowerCase()}`
+        ),
+        ...additionalProps
+      });
 
     if (typeof prop === 'string') {
-      const keys = prop.split(' ')
+      const keys = prop.split(' ');
       const props = {
         [prop]: true
-      }
+      };
 
       if (keys.length > 1) {
         keys.map(key => {
-          props[key] = true
-        })
+          props[key] = true;
+        });
       }
 
-      return defaultClassNames(props)
+      return defaultClassNames(props);
     }
 
-    return defaultClassNames(prop)
-  }
+    return defaultClassNames(prop);
+  };
 
   const customStyles = {
     backdrop: actions.getStyle('backdrop'),
     container: args => actions.getStyle('container', args)
-  }
+  };
 
   // this array holds our
   // backdrop & container elements
   // for render
-  let Wrapper =
+  let Wrapper = (
     <FocusTrap>
-      <div
-        className={state.namespace}
-        tabIndex='-1'
-        onKeyDown={handleKeyDown}
-      >
-        {
-          jsx(state.backdropTagName, {
-            key: 1,
-            tabIndex: '-1',
-            ref: backdropRef,
-            className: `${state.namespace}Backdrop`,
-            css: customStyles.backdrop,
-            onClick:
-              state.shouldCloseOnBackdropClick
-                ? state.onClose
-                  ? state.onClose
-                  : actions.close
-                : state.onBackdropClick
-          })
-        }
-        {
-          jsx(state.containerTagName, {
+      <div className={state.namespace} tabIndex="-1" onKeyDown={handleKeyDown}>
+        {jsx(state.backdropTagName, {
+          key: 1,
+          tabIndex: '-1',
+          ref: backdropRef,
+          className: `${state.namespace}Backdrop`,
+          css: customStyles.backdrop,
+          onClick: state.shouldCloseOnBackdropClick
+            ? state.onClose
+              ? state.onClose
+              : actions.close
+            : state.onBackdropClick
+        })}
+        {jsx(
+          state.containerTagName,
+          {
             role: 'dialog',
             'aria-modal': true,
             'aria-labelledby': state.ariaLabelledBy,
@@ -274,23 +258,18 @@ function Container({
             css: customStyles.container({
               hasHeaderBodyAndFooter
             })
-          }, children)
-        }
+          },
+          children
+        )}
       </div>
     </FocusTrap>
+  );
 
   // finally render
-  return (
-    state.isOpen
-      ? ReactDOM.createPortal(
-        Wrapper,
-        mountTo
-      )
-      : null
-  )
+  return state.isOpen ? ReactDOM.createPortal(Wrapper, mountTo) : null;
 }
 
-Container.defaultProps = defaultProps
+Container.defaultProps = defaultProps;
 
 Container.propTypes = {
   namespace: PropTypes.string,
@@ -304,12 +283,14 @@ Container.propTypes = {
   isOpen: PropTypes.bool,
   classNameWhenOpenend: PropTypes.string,
   ariaAppRoot: PropTypes.instanceOf(document.Element),
-  ariaLabelledBy: (props, key) => props.ariaLabel && props[key]
-    ? new Error(`You cannot use ariaLabel and ${key} at the same time!`)
-    : null,
-  ariaLabel: (props, key) => props.ariaLabelledBy && props[key]
-    ? new Error(`You cannot use ariaLabelledBy and ${key} at the same time!`)
-    : null,
+  ariaLabelledBy: (props, key) =>
+    props.ariaLabel && props[key]
+      ? new Error(`You cannot use ariaLabel and ${key} at the same time!`)
+      : null,
+  ariaLabel: (props, key) =>
+    props.ariaLabelledBy && props[key]
+      ? new Error(`You cannot use ariaLabelledBy and ${key} at the same time!`)
+      : null,
   ariaDescribedBy: PropTypes.string,
   mounTo: PropTypes.instanceOf(document.Element),
   shouldCloseOnBackdropClick: PropTypes.bool,
@@ -331,10 +312,7 @@ Container.propTypes = {
     })
   ]),
 
-  onClose: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.func
-  ]),
+  onClose: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   onBeforeOpen: PropTypes.func,
   onAfterOpen: PropTypes.func,
   onBeforeClose: PropTypes.func,
@@ -349,22 +327,18 @@ Container.propTypes = {
     body: PropTypes.func,
     footer: PropTypes.func
   })
-}
+};
 
-export const withModal = (WrappedComponent, props = {}) =>
-  <Modal.Container
-    {...props}
-  >
+export const withModal = (WrappedComponent, props = {}) => (
+  <Modal.Container {...props}>
     <WrappedComponent />
   </Modal.Container>
+);
 
 const ModalContext = {
   Context,
   Provider,
   Consumer
-}
+};
 
-export {
-  Modal,
-  ModalContext
-}
+export { Modal, ModalContext };

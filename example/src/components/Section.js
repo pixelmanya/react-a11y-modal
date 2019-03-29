@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Section = ({
   id,
@@ -8,46 +8,37 @@ const Section = ({
   emoji,
   Text,
   children
-}) =>
-  <section
-    id={id}
-    className='Section'
-  >
-    { title && (
+}) => (
+  <section id={id} className="Section">
+    {title && (
       <h2 className={titleClassName}>
-        { title }
-        { emoji && (
-          <span className='Section__emoji' role='img'>
-            { emoji }
+        {title}
+        {emoji && (
+          <span className="Section__emoji" role="img">
+            {emoji}
           </span>
         )}
       </h2>
     )}
-    { Text && (
-      <p className='Section__text'>
-        {
-          typeof Text === 'string'
-            ? Text
-            : <Text />
-        }
+    {Text && (
+      <p className="Section__text">
+        {typeof Text === 'string' ? Text : <Text />}
       </p>
     )}
 
-    { children }
+    {children}
   </section>
+);
 
 Section.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
   emoji: PropTypes.string,
-  Text: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element
-  ]),
+  Text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ])
-}
+};
 
-export default Section
+export default Section;
