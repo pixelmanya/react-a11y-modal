@@ -1,0 +1,628 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal component will apply custom styles to <Modal.Header /> from props 1`] = `
+.emotion-0 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: lightgray;
+  opacity: 0.2;
+}
+
+.emotion-2 {
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  display: grid;
+  grid-template-rows: auto;
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 6px;
+  border: none;
+  width: auto;
+  height: auto;
+  box-shadow: 0px 11px 15px -7px rgba(0,0,0,0.2), 0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12);
+  background: white;
+}
+
+.emotion-1 {
+  padding: 1rem;
+  background: green;
+}
+
+<Container
+  styles={
+    Object {
+      "header": Object {
+        "background": "green",
+        "padding": "1rem",
+      },
+    }
+  }
+>
+  <ModalContextProvider>
+    <Container
+      ariaAppRoot={null}
+      ariaDescribedBy={null}
+      ariaLabel={null}
+      ariaLabelledBy={null}
+      backdropTagName="div"
+      className="ModalContainer"
+      classNameWhenOpenend="modal-is-opened"
+      containerTagName="dialog"
+      isOpen={true}
+      mountTo={
+        .emotion-0 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: lightgray;
+  opacity: 0.2;
+}
+
+.emotion-6 {
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  display: grid;
+  grid-template-rows: auto;
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 6px;
+  border: none;
+  width: auto;
+  height: auto;
+  box-shadow: 0px 11px 15px -7px rgba(0,0,0,0.2), 0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12);
+  background: white;
+}
+
+.emotion-4 {
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  display: grid;
+  grid-template-rows: auto;
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 6px;
+  border: none;
+  width: auto;
+  height: auto;
+  box-shadow: 0px 11px 15px -7px rgba(0,0,0,0.2), 0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12);
+  background: white;
+  top: 50px;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+@media screen and (max-width:600px) {
+  .emotion-4 {
+    top: 25px;
+    bottom: 25px;
+    left: 25px;
+    right: 25px;
+  }
+}
+
+@media screen and (max-width:375px) {
+  .emotion-4 {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+  }
+}
+
+.emotion-1 {
+  border-bottom: 1px solid lightgray;
+  padding: 1rem;
+}
+
+.emotion-1__title {
+  font-size: 1.5rem;
+  line-height: 2;
+}
+
+.emotion-2 {
+  padding: 1rem;
+  overflow-y: auto;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.emotion-3 {
+  box-shadow: 0 5px 30px rgba(0,0,0,0.4);
+  padding: 1rem;
+  text-align: right;
+}
+
+.emotion-11 {
+  padding: 1rem;
+  background: green;
+}
+
+<body
+          class="modal-is-opened"
+        >
+          <div
+            class="Modal"
+            tabindex="-1"
+          >
+            <div
+              class="ModalBackdrop emotion-0"
+              tabindex="-1"
+            />
+            <dialog
+              aria-modal="true"
+              class="Modal-has-header Modal-has-body Modal-has-footer ModalContainer emotion-4"
+              open=""
+              role="dialog"
+            >
+              <div
+                class="ModalHeader emotion-1"
+              >
+                <h1>
+                  Title
+                </h1>
+              </div>
+              <div
+                class="ModalBody emotion-2"
+              >
+                <p>
+                  Text
+                </p>
+              </div>
+              <div
+                class="ModalFooter emotion-3"
+              >
+                <button>
+                  Button
+                </button>
+              </div>
+            </dialog>
+          </div>
+          <div
+            class="Modal"
+            tabindex="-1"
+          >
+            <div
+              class="ModalBackdrop emotion-0"
+              tabindex="-1"
+            />
+            <dialog
+              aria-modal="true"
+              class="ModalContainer emotion-6"
+              open=""
+              role="dialog"
+            >
+              <button>
+                Button
+              </button>
+            </dialog>
+          </div>
+          <div
+            class="Modal"
+            tabindex="-1"
+          >
+            <div
+              class="ModalBackdrop emotion-0"
+              tabindex="-1"
+            />
+            <dialog
+              aria-modal="true"
+              class="Modal-has-header ModalContainer emotion-6"
+              open=""
+              role="dialog"
+            >
+              <div
+                class="ModalHeader emotion-1"
+              >
+                <button>
+                  Button
+                </button>
+              </div>
+            </dialog>
+          </div>
+          <div
+            class="Modal"
+            tabindex="-1"
+          >
+            <div
+              class="ModalBackdrop emotion-0"
+              tabindex="-1"
+            />
+            <dialog
+              aria-modal="true"
+              class="Modal-has-header ModalContainer emotion-6"
+              open=""
+              role="dialog"
+            >
+              <div
+                class="ModalHeader emotion-11"
+              >
+                <button>
+                  Button
+                </button>
+              </div>
+            </dialog>
+          </div>
+        </body>
+      }
+      namespace="Modal"
+      onAfterClose={[Function]}
+      onAfterShow={[Function]}
+      onBackdropClick={[Function]}
+      onBeforeClose={[Function]}
+      onBeforeShow={[Function]}
+      onClose={false}
+      onEscClick={[Function]}
+      refs={
+        Object {
+          "backdrop": [Function],
+          "body": [Function],
+          "container": [Function],
+          "footer": [Function],
+          "header": [Function],
+        }
+      }
+      shallHide={false}
+      shouldCloseOnBackdropClick={true}
+      shouldCloseOnEscClick={true}
+      styles={
+        Object {
+          "header": Object {
+            "background": "green",
+            "padding": "1rem",
+          },
+        }
+      }
+      waitUntilUnmountInMs={0}
+    >
+      <Portal
+        containerInfo={
+          .emotion-0 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: lightgray;
+  opacity: 0.2;
+}
+
+.emotion-6 {
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  display: grid;
+  grid-template-rows: auto;
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 6px;
+  border: none;
+  width: auto;
+  height: auto;
+  box-shadow: 0px 11px 15px -7px rgba(0,0,0,0.2), 0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12);
+  background: white;
+}
+
+.emotion-4 {
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  display: grid;
+  grid-template-rows: auto;
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 6px;
+  border: none;
+  width: auto;
+  height: auto;
+  box-shadow: 0px 11px 15px -7px rgba(0,0,0,0.2), 0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12);
+  background: white;
+  top: 50px;
+  bottom: 50px;
+  left: 50px;
+  right: 50px;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+@media screen and (max-width:600px) {
+  .emotion-4 {
+    top: 25px;
+    bottom: 25px;
+    left: 25px;
+    right: 25px;
+  }
+}
+
+@media screen and (max-width:375px) {
+  .emotion-4 {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+  }
+}
+
+.emotion-1 {
+  border-bottom: 1px solid lightgray;
+  padding: 1rem;
+}
+
+.emotion-1__title {
+  font-size: 1.5rem;
+  line-height: 2;
+}
+
+.emotion-2 {
+  padding: 1rem;
+  overflow-y: auto;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.emotion-3 {
+  box-shadow: 0 5px 30px rgba(0,0,0,0.4);
+  padding: 1rem;
+  text-align: right;
+}
+
+.emotion-11 {
+  padding: 1rem;
+  background: green;
+}
+
+<body
+            class="modal-is-opened"
+          >
+            <div
+              class="Modal"
+              tabindex="-1"
+            >
+              <div
+                class="ModalBackdrop emotion-0"
+                tabindex="-1"
+              />
+              <dialog
+                aria-modal="true"
+                class="Modal-has-header Modal-has-body Modal-has-footer ModalContainer emotion-4"
+                open=""
+                role="dialog"
+              >
+                <div
+                  class="ModalHeader emotion-1"
+                >
+                  <h1>
+                    Title
+                  </h1>
+                </div>
+                <div
+                  class="ModalBody emotion-2"
+                >
+                  <p>
+                    Text
+                  </p>
+                </div>
+                <div
+                  class="ModalFooter emotion-3"
+                >
+                  <button>
+                    Button
+                  </button>
+                </div>
+              </dialog>
+            </div>
+            <div
+              class="Modal"
+              tabindex="-1"
+            >
+              <div
+                class="ModalBackdrop emotion-0"
+                tabindex="-1"
+              />
+              <dialog
+                aria-modal="true"
+                class="ModalContainer emotion-6"
+                open=""
+                role="dialog"
+              >
+                <button>
+                  Button
+                </button>
+              </dialog>
+            </div>
+            <div
+              class="Modal"
+              tabindex="-1"
+            >
+              <div
+                class="ModalBackdrop emotion-0"
+                tabindex="-1"
+              />
+              <dialog
+                aria-modal="true"
+                class="Modal-has-header ModalContainer emotion-6"
+                open=""
+                role="dialog"
+              >
+                <div
+                  class="ModalHeader emotion-1"
+                >
+                  <button>
+                    Button
+                  </button>
+                </div>
+              </dialog>
+            </div>
+            <div
+              class="Modal"
+              tabindex="-1"
+            >
+              <div
+                class="ModalBackdrop emotion-0"
+                tabindex="-1"
+              />
+              <dialog
+                aria-modal="true"
+                class="Modal-has-header ModalContainer emotion-6"
+                open=""
+                role="dialog"
+              >
+                <div
+                  class="ModalHeader emotion-11"
+                >
+                  <button>
+                    Button
+                  </button>
+                </div>
+              </dialog>
+            </div>
+          </body>
+        }
+      >
+        <FocusTrap
+          _createFocusTrap={[Function]}
+          active={true}
+          focusTrapOptions={Object {}}
+          paused={false}
+        >
+          <div
+            className="Modal"
+            onKeyDown={[Function]}
+            tabIndex="-1"
+          >
+            <ForwardRef(render)
+              __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Container"
+              __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+              className="ModalBackdrop"
+              css={
+                Object {
+                  "map": undefined,
+                  "name": "szedqb",
+                  "next": undefined,
+                  "styles": "
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: lightgray;
+  opacity: 0.2;
+",
+                }
+              }
+              key="1"
+              onClick={[Function]}
+              tabIndex="-1"
+            >
+              <div
+                className="ModalBackdrop emotion-0"
+                onClick={[Function]}
+                tabIndex="-1"
+              />
+            </ForwardRef(render)>
+            <ForwardRef(render)
+              __EMOTION_LABEL_PLEASE_DO_NOT_USE__="Container"
+              __EMOTION_TYPE_PLEASE_DO_NOT_USE__="dialog"
+              aria-describedby={null}
+              aria-label={null}
+              aria-labelledby={null}
+              aria-modal={true}
+              className="Modal-has-header ModalContainer"
+              css={
+                Object {
+                  "map": undefined,
+                  "name": "7jbq5",
+                  "next": undefined,
+                  "styles": "
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  grid-template-rows: auto;
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 6px;
+  border: none;
+  width: auto;
+  height: auto;
+  box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2),
+    0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+  background: white;
+
+  
+",
+                }
+              }
+              open={true}
+              role="dialog"
+            >
+              <dialog
+                aria-describedby={null}
+                aria-label={null}
+                aria-labelledby={null}
+                aria-modal={true}
+                className="Modal-has-header ModalContainer emotion-2"
+                open={true}
+                role="dialog"
+              >
+                <Component>
+                  <ForwardRef(render)
+                    __EMOTION_TYPE_PLEASE_DO_NOT_USE__="div"
+                    className="ModalHeader"
+                    css={
+                      Object {
+                        "background": "green",
+                        "padding": "1rem",
+                      }
+                    }
+                  >
+                    <div
+                      className="ModalHeader emotion-1"
+                    >
+                      <Button>
+                        <button>
+                          Button
+                        </button>
+                      </Button>
+                    </div>
+                  </ForwardRef(render)>
+                </Component>
+              </dialog>
+            </ForwardRef(render)>
+          </div>
+        </FocusTrap>
+      </Portal>
+    </Container>
+  </ModalContextProvider>
+</Container>
+`;

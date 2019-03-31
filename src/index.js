@@ -7,7 +7,6 @@ import FocusTrap from 'focus-trap-react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import mapKeys from 'lodash/mapKeys';
-import get from 'lodash/get';
 import {
   ModalContext as Context,
   ModalContextProvider as Provider,
@@ -24,7 +23,7 @@ export const defaultProps = {
   namespace: 'Modal',
   backdropTagName: 'div',
   containerTagName: 'dialog',
-  className: null,
+  className: 'ModalContainer',
   mountTo: document.body,
 
   ariaAppRoot: null,
@@ -69,16 +68,16 @@ export const defaultProps = {
 };
 
 const Modal = {
-  Header: createElement('Header'),
-  Body: createElement('Body'),
-  Footer: createElement('Footer'),
   Container({ children, ...props }) {
     return (
       <Provider>
         <Container {...props}>{children}</Container>
       </Provider>
     );
-  }
+  },
+  Header: createElement('Header'),
+  Body: createElement('Body'),
+  Footer: createElement('Footer')
 };
 
 function Container({ children, mountTo }) {
@@ -195,7 +194,6 @@ function Container({ children, mountTo }) {
   const getClassName = prop => {
     const defaultClassNames = (additionalProps = {}) =>
       classNames({
-        [state.namespace]: true,
         ...mapKeys(
           mapOfChildrenUsed,
           (value, key) => `${state.namespace}-has-${key.toLowerCase()}`
@@ -342,3 +340,4 @@ const ModalContext = {
 };
 
 export { Modal, ModalContext };
+export default Modal.Container;
