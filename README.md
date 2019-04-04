@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/pixelmanya/react-a11y-modal.svg?branch=master)](https://travis-ci.com/pixelmanya/react-a11y-modal) [![NPM](https://img.shields.io/npm/v/react-a11y-modal.svg)](https://www.npmjs.com/package/react-a11y-modal) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-An accessible & customizable modal dialog for [React](https://reactjs.org) built with [Hooks](https://reactjs.org/docs/hooks-intro.html) under the hood. It provides developers a decent-looking modal which they can use right away without worrying much about styling. However, if you need custom styles, it's of course possible.
+An accessible & customizable modal dialog for [React](https://reactjs.org) built with [Hooks](https://reactjs.org/docs/hooks-intro.html) under the hood. It provides developers a decent-looking modal which they can use right away without worrying much about styling. However, if you need custom styles it's of course possible.
 
 ## Contents 📖
 
