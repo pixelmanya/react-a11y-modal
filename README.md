@@ -63,7 +63,7 @@ export default HeaderBodyAndFooterModal;
 
 ## Docs
 
-For detailed documentation there is [page](https://pixelmanya.github.io/react-a11y-modal) with everything you need to know.
+For detailed documentation there is this [page](https://pixelmanya.github.io/react-a11y-modal) with everything you need to know.
 
 ## Examples
 
