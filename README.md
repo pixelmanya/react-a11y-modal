@@ -6,12 +6,12 @@ An accessible & customizable modal dialog for [React](https://reactjs.org) built
 
 ## Contents 📖
 
-* [Installation](#installation)
-* [Usage](#usage)
-* [Docs](#docs)
-* [Examples](#examples)
-* [Accessibility](#accessibility)
-* [License](#license)
+* [Installation](#installation-)
+* [Usage](#usage-)
+* [Docs](#docs-)
+* [Examples](#examples-)
+* [Accessibility](#accessibility-)
+* [License](#license-)
 
 ## Installation ⚒
 
