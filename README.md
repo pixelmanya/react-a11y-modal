@@ -43,22 +43,18 @@ import { Modal } from 'react-a11y-modal';
 ```jsx
 import { Modal } from 'react-a11y-modal';
 
-const HeaderBodyAndFooterModal = () => (
-  <Modal.Container>
-    <Modal.Header>
-      <h1>Title</h1>
-      <button>Close</button>
-    </Modal.Header>
-    <Modal.Body>
-      <p>Body</p>
-    </Modal.Body>
-    <Modal.Footer>
-      <button>Footer button</button>
-    </Modal.Footer>
-  </Modal.Container>
-);
-
-export default HeaderBodyAndFooterModal;
+<Modal.Container>
+  <Modal.Header>
+    <h1>Title</h1>
+    <button>Close</button>
+  </Modal.Header>
+  <Modal.Body>
+    <p>Body</p>
+  </Modal.Body>
+  <Modal.Footer>
+    <button>Footer button</button>
+  </Modal.Footer>
+</Modal.Container>
 ```
 
 ## Docs 🤓
