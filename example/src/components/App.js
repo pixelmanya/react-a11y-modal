@@ -588,15 +588,14 @@ export default () =>
           </div>
         </main>
         <footer className="Footer">
-          <span className="info">v1.0.5 ~ last published on 2019/03/11</span>
-          <p className="credits">
+          <p>
             Handcrafted with{' '}
             <span role="img" aria-label="Love">
               ❤️
             </span>{' '}
             by{' '}
             <a href="http://pixelmanya.com" target="blank">
-              Dominik Mertz
+              pixelmanya
             </a>{' '}
             in 2019
           </p>
