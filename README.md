@@ -9,7 +9,7 @@ An accessible & customizable modal dialog for [React](https://reactjs.org) built
 * [Installation](#installation-)
 * [Usage](#usage-)
 * [Docs](#docs-)
-* [Examples](#examples-)
+* [Demos](#demos-)
 * [Accessibility](#accessibility-)
 * [License](#license-)
 
@@ -65,7 +65,7 @@ export default HeaderBodyAndFooterModal;
 
 For detailed documentation there is this [page](https://pixelmanya.github.io/react-a11y-modal) with everything you need to know.
 
-## Examples 💡
+## Demos 💡
 
 * [Basic Modal](https://pixelmanya.github.io/react-a11y-modal/#basic-modal)
 * [Modal with Header, Body and Footer](https://pixelmanya.github.io/react-a11y-modal/#with-header-body-and-footer)
