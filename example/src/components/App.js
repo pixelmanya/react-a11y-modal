@@ -83,6 +83,7 @@ function App() {
               <blockquote className="Introduction">
                 <strong>Welcome!</strong>
                 <span role="img" aria-label="Waving hand">
+                  {' '}
                   👋
                 </span>
                 <br />
@@ -173,6 +174,7 @@ export default () =>
               <blockquote className="Hint">
                 <strong>Oh, by the way</strong>
                 <span role="img" aria-label="Check it out">
+                  {' '}
                   ☝️
                 </span>
                 <br />
