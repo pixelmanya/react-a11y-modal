@@ -4,7 +4,7 @@
 
 An accessible & customizable modal dialog for [React](https://reactjs.org) built with [Hooks](https://reactjs.org/docs/hooks-intro.html) under the hood. It provides developers a decent-looking modal which they can use right away without worrying much about styling. However, if you need custom styles, it's of course possible.
 
-## Contents
+## Contents 📖
 
 * [Installation](#installation)
 * [Usage](#usage)
@@ -13,7 +13,7 @@ An accessible & customizable modal dialog for [React](https://reactjs.org) built
 * [Accessibility](#accessibility)
 * [License](#license)
 
-## Installation
+## Installation ⚒
 
 Use either [npm](https://npmjs.org/) or [yarn](https://yarnpkg.com):
 
@@ -23,7 +23,7 @@ yarn add react-a11y-modal
 
 ```
 
-## Usage
+## Usage 🤔
 
 There are plenty of [props](https://pixelmanya.github.io/react-a11y-modal/#props) available, which you can pass to `<Modal.Container />`.
 
@@ -61,11 +61,11 @@ const HeaderBodyAndFooterModal = () => (
 export default HeaderBodyAndFooterModal;
 ```
 
-## Docs
+## Docs 🤓
 
 For detailed documentation there is this [page](https://pixelmanya.github.io/react-a11y-modal) with everything you need to know.
 
-## Examples
+## Examples 💡
 
 * [Basic Modal](https://pixelmanya.github.io/react-a11y-modal/#basic-modal)
 * [Modal with Header, Body and Footer](https://pixelmanya.github.io/react-a11y-modal/#with-header-body-and-footer)
@@ -74,10 +74,10 @@ For detailed documentation there is this [page](https://pixelmanya.github.io/rea
 * [Confirmation Modal](https://pixelmanya.github.io/react-a11y-modal/#confirmation-modal) (custom)
 * [Sign-in Modal](https://pixelmanya.github.io/react-a11y-modal/#sign-in-modal) (custom)
 
-## Accessibility
+## Accessibility ♿️
 
 react-a11y-modal was designed to follow the [W3C Specification](https://www.w3.org/TR/wai-aria-practices/#dialog_modal). 
 
-## License
+## License 🔓
 
 MIT © [pixelmanya](https://github.com/pixelmanya)
