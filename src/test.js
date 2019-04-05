@@ -17,7 +17,18 @@ const actionsObj = JSON.parse(
   })
 );
 
-//swallowLogs();
+const swallowConsoleLogs = () => {
+  beforeEach(() => {
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    console.error.mockRestore();
+  });
+};
+
+swallowConsoleLogs();
 
 describe('Modal component', () => {
   it('renders modal with button which closes the modal onClick', () => {
@@ -129,9 +140,11 @@ describe('Modal component', () => {
     expect(component).toMatchSnapshot();
   });
 
-  it('renders modal without one focusable element will throw an error from <FocusTrap />', () => {
+  it('will throw an error (from <FocusTrap />) when you initiate a modal without one focusable element', () => {
     expect(() => {
-      mount(<Modal.Container>A modal without a button.</Modal.Container>);
+      mount(
+        <Modal.Container>A modal without a focusable element!</Modal.Container>
+      );
     }).toThrow();
   });
 });
