@@ -1,6 +1,6 @@
 {
   "name": "react-a11y-modal",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "An accessible & customizable modal dialog for React built with Hooks under the hood.",
   "keywords": [
     "react",
