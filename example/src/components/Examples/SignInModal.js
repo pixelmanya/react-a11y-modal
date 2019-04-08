@@ -19,7 +19,7 @@ const formState = [
   }
 ];
 
-const FormModal = ({ onAfterClose }) =>
+const SignInModal = ({ onAfterClose }) =>
   withModal(
     () => {
       const [fields, setFormFields] = useState(formState);
@@ -97,20 +97,13 @@ const FormModal = ({ onAfterClose }) =>
       );
     },
     {
-      className: {
-        'Modal--form': true
-      },
+      namespace: 'SignInModal',
       styles: {
-        backdrop: {
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          background: 'rgba(0,0,0,.3)',
+        container: {
           opacity: 0,
-          transition: 'all .2s ease'
+          transform: 'translate(-50%, -20%)'
         },
+        footer: false,
         backdropAfterMount: {
           opacity: 0.2
         },
@@ -118,19 +111,14 @@ const FormModal = ({ onAfterClose }) =>
           transitionDelay: '.35s',
           opacity: 0
         },
-        container: {
-          opacity: 0,
-          transition: 'all .35s ease .2s',
-          transform: 'translateY(-40%)'
-        },
         containerAfterMount: {
           opacity: 1,
-          transform: 'translateY(-50%)'
+          transform: 'translate(-50%, -50%)'
         },
         containerBeforeUnmount: {
           opacity: 0,
           transitionDelay: '0ms',
-          transform: 'translateY(-40%)'
+          transform: 'translate(-50%, -40%)'
         }
       },
       waitUntilUnmountInMs: 450,
@@ -138,4 +126,4 @@ const FormModal = ({ onAfterClose }) =>
     }
   );
 
-export default FormModal;
+export default SignInModal;

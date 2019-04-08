@@ -5,7 +5,7 @@ import {
   ConfirmationModal,
   HeaderAndFooterModal,
   NestedModal,
-  FormModal
+  SignInModal
 } from './Examples';
 
 const Examples = [
@@ -265,7 +265,7 @@ export const ConfirmationModal = () =>
     text: `
       This example shows a custom Sign-in Modal which utilises custom CSS transition.
     `,
-    Component: FormModal,
+    Component: SignInModal,
     codeLink:
       'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/FormModal.js',
     code: `

@@ -8,5 +8,5 @@ export {
   AnimatedConfirmationModal
 } from './ConfirmationModal';
 export { default as HeaderAndFooterModal } from './HeaderAndFooterModal';
-export { default as FormModal } from './FormModal';
+export { default as SignInModal } from './SignInModal';
 export { default as NestedModal } from './NestedModal';

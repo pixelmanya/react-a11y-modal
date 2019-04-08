@@ -40,18 +40,17 @@ function ModalContextProvider({ children }) {
     merge({}, initialState, pick(children.props, Object.keys(initialState)))
   );
   const getStyle = (prop, args = {}) => {
-    const rules = get(state, `styles.${prop}`, {});
+    const customStyles = get(state, `styles.${prop}`, {});
+    const cssStyles = styles[prop.toLowerCase()];
 
-    if (Object.keys(rules).length) {
-      return rules;
-    } else if (!!state.styles !== false && styles[prop.toLowerCase()]) {
-      const res = styles[prop.toLowerCase()];
-
-      if (typeof res === 'function') {
-        return res(args);
+    if (Object.keys(customStyles).length) {
+      return customStyles;
+    } else if (cssStyles && !!customStyles !== false) {
+      if (typeof cssStyles === 'function') {
+        return cssStyles(args);
       }
 
-      return res;
+      return cssStyles;
     }
 
     return undefined;
@@ -69,7 +68,7 @@ function ModalContextProvider({ children }) {
         styles = {
           ...styles,
           backdrop: {
-            ...state.styles.backdrop,
+            ...(state.styles.backdrop || {}),
             ...state.styles.backdropBeforeUnmount
           }
         };
@@ -79,7 +78,7 @@ function ModalContextProvider({ children }) {
         styles = {
           ...styles,
           container: {
-            ...state.styles.container,
+            ...(state.styles.container || {}),
             ...state.styles.containerBeforeUnmount
           }
         };

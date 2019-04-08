@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Examples from './ExamplesDefinition';
+import 'intersection-observer';
 
 const NavItems = [
   {

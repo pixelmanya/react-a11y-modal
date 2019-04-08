@@ -507,6 +507,8 @@ button:active {
 /* BasicModal */
 
 .BasicModal {
+  min-width: get-rem(300px);
+
   .ModalHeader__title {
     padding-bottom: 1rem;
   }

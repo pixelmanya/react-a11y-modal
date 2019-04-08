@@ -5,6 +5,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "intersection-observer": "^0.5.1",
     "prop-types": "^15.6.2",
     "react": "link:../node_modules/react",
     "react-a11y-modal": "link:../",

@@ -194,6 +194,7 @@ function Container({ children, mountTo }) {
   const getClassName = prop => {
     const defaultClassNames = (additionalProps = {}) =>
       classNames({
+        [state.namespace + 'Container']: true,
         ...mapKeys(
           mapOfChildrenUsed,
           (value, key) => `${state.namespace}-has-${key.toLowerCase()}`
@@ -203,9 +204,7 @@ function Container({ children, mountTo }) {
 
     if (typeof prop === 'string') {
       const keys = prop.split(' ');
-      const props = {
-        [prop]: true
-      };
+      const props = {};
 
       if (keys.length > 1) {
         keys.map(key => {
@@ -219,11 +218,6 @@ function Container({ children, mountTo }) {
     return defaultClassNames(prop);
   };
 
-  const customStyles = {
-    backdrop: actions.getStyle('backdrop'),
-    container: args => actions.getStyle('container', args)
-  };
-
   // this array holds our
   // backdrop & container elements
   // for render
@@ -235,7 +229,7 @@ function Container({ children, mountTo }) {
           tabIndex: '-1',
           ref: backdropRef,
           className: `${state.namespace}Backdrop`,
-          css: customStyles.backdrop,
+          css: actions.getStyle('backdrop'),
           onClick: state.shouldCloseOnBackdropClick
             ? state.onClose
               ? state.onClose
@@ -253,7 +247,7 @@ function Container({ children, mountTo }) {
             open: state.isOpen,
             ref: containerRef,
             className: getClassName(state.className),
-            css: customStyles.container({
+            css: actions.getStyle('container', {
               hasHeaderBodyAndFooter
             })
           },
@@ -298,15 +292,15 @@ Container.propTypes = {
   styles: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.shape({
-      backdrop: PropTypes.object,
+      backdrop: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
       backdropAfterMount: PropTypes.object,
       backdropBeforeUnmount: PropTypes.object,
-      container: PropTypes.object,
+      container: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
       containerAfterMount: PropTypes.object,
       containerBeforeUnmount: PropTypes.object,
-      header: PropTypes.object,
-      body: PropTypes.object,
-      footer: PropTypes.object
+      header: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+      body: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+      footer: PropTypes.oneOfType([PropTypes.object, PropTypes.bool])
     })
   ]),
 

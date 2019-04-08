@@ -8,6 +8,7 @@ import '../../assets/styles/examples/ConfirmationModal.scss';
 export const ConfirmationModal = ({ onAfterClose, onClose }) => {
   return (
     <Modal.Container
+      styles={null}
       onAfterClose={!onClose ? onAfterClose : () => {}}
       onClose={onClose}
       className={{
