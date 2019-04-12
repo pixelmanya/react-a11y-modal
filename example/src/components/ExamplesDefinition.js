@@ -267,7 +267,7 @@ export const ConfirmationModal = () =>
     `,
     Component: SignInModal,
     codeLink:
-      'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/FormModal.js',
+      'https://github.com/pixelmanya/react-a11y-modal/blob/master/example/src/components/Examples/SignInModal.js',
     code: `
 import React, { useState } from 'react'
 import { withModal, Modal } from 'react-a11y-modal'
