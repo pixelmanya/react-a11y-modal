@@ -16,7 +16,7 @@
     "node-forge": "^0.10.0",
     "prismjs": "^1.21.0",
     "prop-types": "^15.6.2",
-    "react": "^0.14.0",
+    "react": "link:../node_modules/react",
     "react-a11y-modal": "link:../",
     "react-app-rewired": "^2.1.0",
     "react-dom": "link:../node_modules/react-dom",
