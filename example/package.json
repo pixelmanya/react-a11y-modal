@@ -17,7 +17,7 @@
     "prismjs": "^1.21.0",
     "prop-types": "^15.6.2",
     "react": "link:../node_modules/react",
-    "react-a11y-modal": "link:../",
+    "react-a11y-modal": "link:..",
     "react-app-rewired": "^2.1.0",
     "react-dom": "link:../node_modules/react-dom",
     "react-router": "^4.3.1",
