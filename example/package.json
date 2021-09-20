@@ -14,7 +14,7 @@
     "kind-of": "^6.0.3",
     "lodash.template": "^4.5.0",
     "node-forge": "^0.10.0",
-    "prismjs": "^1.23.0",
+    "prismjs": "^1.25.0",
     "prop-types": "^15.6.2",
     "react": "link:../node_modules/react",
     "react-a11y-modal": "link:..",
